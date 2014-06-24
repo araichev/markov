@@ -1,0 +1,155 @@
+import stdlib
+
+PREFIX_LENGTH = 2
+
+def get_words(word_lists, ratios):
+    """
+    Merge the list of texts according to the given ratios and
+    return the resulting text split into words.
+    """
+
+    # Truncate word_lists to accord with ratios
+    R = sum(ratios)
+    m = Math.min(*[len(wl) for wl in word_lists])
+    counts = [Math.max(PREFIX_LENGTH, Math.ceil(m*r/R)) for r in ratios]
+    word_lists = [word_lists[i][:counts[i]] for i in range(len(word_lists))] 
+    # Combine word lists into one word list
+    result = []
+    for wl in word_lists:
+        result.extend(wl)
+    return result
+
+def pack(items):
+    """
+    Because RapydScript doesn't have ordered items :-(, 
+    use item1##item2 to simulate one 
+    """
+    return items.join('##')
+
+def unpack(items):
+    return items.split('##')
+
+def get_markov_analysis(words, prefix_length=PREFIX_LENGTH):
+    """
+    Return a Markov analysis of the list of strings ``words``.
+    The output format is a dictionary with structure: 
+    a tuple of contiguous words in ``words`` of length ``prefix_length`` 
+    (a prefix) -> a list of all individual words in ``words`` that occur 
+    after that prefix.
+    """
+    result = {}
+    for i in range(len(words) - prefix_length):
+        prefix = pack(words[i:i + prefix_length])
+        suffix = words[i + prefix_length]
+        if prefix in result:
+            result[prefix].append(suffix)
+        else:
+            result[prefix] = [suffix]
+    return result
+
+def shuffle(a):
+    """
+    Randomly shuffle the given list and return the result.
+    Uses the Fisher–Yates shuffle, which is explained well at 
+    http:#bost.ocks.org/mike/shuffle/ .
+    """
+    m = len(a) - 1
+
+    # While there remain elements to shuffle
+    while m: 
+        # Pick a remaining element
+        i = Math.floor(Math.random()*m)
+        # And swap it with the current element
+        a[m], a[i] = a[i], a[m]
+        m -= 1
+
+    return a
+
+def choose(a):
+    """
+    Return a random element from the given list
+    """
+    i = Math.floor(Math.random()*len(a))
+    return a[i]
+
+def get_mix(words, num_words, prefix_length=2):
+    """
+    Return a list of ``num_words`` random words from 
+    the given list of words. 
+    Do this by shuffling ``d = get_markov_analysis(words, prefix_length)``,
+    and traversing ``d`` until ``num_words`` random words have been 
+    generated.
+    """
+    d = get_markov_analysis(words, prefix_length)
+    # Check if d is empty. Unlike Python, you can't do ``if d`` 
+    # in RapydScript
+    if not len(d):
+        return []
+
+    # Shuffle prefixes
+    prefixes = shuffle(dict.keys(d))
+    result = unpack(prefixes[0])
+
+    # Build num_words of random text or
+    # or as many words as possible
+    i = 0   
+    while i < num_words:
+        # Get next prefix
+        prefix = pack(result[i:i + prefix_length])
+        # Choose a random suffix from d[pack(prefix)]
+        while prefix not in d:
+            # Unlucky and got the last prefix in the source text
+            # which necessarily has no suffix list.
+            # So choose another prefix at random.
+            prefix = choose(prefixes)
+        s = d[prefix]
+        suffix = choose(s)
+        result.append(suffix)
+        i += 1
+    return result
+
+def get_word_lists_and_ratios():
+    user_texts = [
+      $('#text1').val(), 
+      $('#text2').val(), 
+      $('#text3').val()]
+    user_ratios = [
+      int($('#ratio1 option:selected').val()), 
+      int($('#ratio2 option:selected').val()), 
+      int($('#ratio3 option:selected').val())]
+    word_lists = []
+    ratios = []
+    for (i, st) in enumerate(user_texts):
+        # Grab non-whitespace words
+        word_list = st.trim().split(/\s+/) #st.match(/\S+/g) # or 
+        if len(word_list) > PREFIX_LENGTH:
+            word_lists.append(word_list)
+            ratios.append(user_ratios[i])
+    return word_lists, ratios
+
+def get_num_words():
+    return int($('#num-words').val())
+
+def put_mix(mix):
+    $('#mix').val(mix)
+
+def main():
+    print('Hello!')
+    wl, r = get_word_lists_and_ratios()
+    print(r)
+    words = get_words(*get_word_lists_and_ratios())
+    print('source num words', len(words))
+    num_words = get_num_words()
+    print('mix num words', num_words)
+    mix = get_mix(words, num_words)
+    put_mix(mix.join(' '))
+
+$('#mix-it').click(def():
+    $("#text1" ).effect("shake", {'times':3}, 800)
+    $("#text2" ).effect("shake", {'times':3}, 1000)
+    $("#text3" ).effect("shake", {'times':3}, 1200)
+    setTimeout(def():
+        main() 
+    ,1400)
+)        
+

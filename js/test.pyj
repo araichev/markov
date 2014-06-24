@@ -1,0 +1,40 @@
+import stdlib
+
+def pack(items):
+    """
+    Because RapydScript doesn't have ordered items, 
+    use item1##item2##...##itemN to simulate one 
+    """
+    return items.join('##')
+
+def timeit(fun):
+    def wrap(a,b):
+        s = Date.now()
+        a = fun(a,b)
+        console.log(Date.now()-s)
+        return a
+    return wrap
+
+@timeit
+def get_markov_analysis(text, prefix_length=2):
+    """
+    Return a Markov analysis of the list of strings ``words``.
+    The output format is a dictionary with structure: 
+    a tuple of contiguous words in ``words`` of length ``prefix_length`` 
+    (a prefix) -> a list of all individual words in ``words`` that occur 
+    after that prefix.
+    """
+    words = text.trim().split(/\s+/)
+    result = {}
+    for i in range(len(words) - prefix_length):
+        prefix = pack(words[i:i + prefix_length])
+        suffix = words[i + prefix_length]
+        if prefix in result:
+            result[prefix].append(suffix)
+        else:
+            result[prefix] = [suffix]
+    return result
+
+text = $('body').text()
+print(len(text))
+get_markov_analysis(text)

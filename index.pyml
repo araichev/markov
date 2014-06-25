@@ -2,50 +2,72 @@
 html:
     head:
         title:
-            "Markov's Mix"
+            "Markov: A Game of Poems"
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
         link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
         link(rel='stylesheet' href='css/style.css')
 body:
-    h1:
-        "Markov's Mix"  
-    table:
+    header:
+        h1:
+            "Markov"
+        h2:
+            "A Game of Poems"  
+    p:
+        b:
+            "Step 1. Choose some source texts."
+        "Copy up to three source texts and paste them into the boxes below." 
+    table(class="indent"):
         tr:
             td:
                 textarea(id="text1" class="source"):
-                    "Andrey (Andrei) Andreyevich Markov (Russian: Андре́й Андре́евич Ма́рков, in older works also spelled Markoff[1])(14 June 1856 N.S. – 20 July 1922) was a Russian mathematician. He is best known for his work on stochastic processes. A primary subject of his research later became known as Markov chains and Markov processes. Markov and his younger brother Vladimir Andreevich Markov (1871–1897) proved Markov brothers' inequality. His son, another Andrei Andreevich Markov (1903–1979), was also a notable mathematician, making contributions to constructive mathematics and recursive function theory. [Quoted from Wikipedia]"
+                    "In probability theory and statistics, a Markov process or Markoff process, named after the Russian mathematician Andrey Markov, is a stochastic process that satisfies the Markov property. A Markov process can be thought of as 'memoryless': loosely speaking, a process satisfies the Markov property if one can make predictions for the future of the process based solely on its present state just as well as one could knowing the process's full history. I.e., conditional on the present state of the system, its future and past are independent [Quoted from Wikipedia]"
             td:
                 textarea(id="text2" class="source"):
-                    "A possessive form is a word or grammatical construction used to indicate a relationship of possession in a broad sense. In English, possession is in fact expressed in only about 40 percent of the situations labeled as 'possessive' by some linguists, which is why many consider the term incorrect and misleading and instead prefer others, especially the more traditional term 'genitive'.[1] Possessive forms that occur with a noun and indicate the possessor of the referent of that noun, thus serving as determiners or adjectives, are called possessive determiners or possessive adjectives (see Terminology below). Examples include the English words my and Jane's as used in the phrases my friends and Jane's work. Possessive forms that indicate the possessor of something but occur independently, without qualifying a noun, are called possessive pronouns. Examples in English include the words mine and yours as in mine is red and I prefer yours. Forms such as Jane's in I prefer Jane's perform the same function, though they are more rarely described as possessive pronouns, being derived from nouns. Nouns or pronouns taking the form of a possessive are sometimes described as being in the possessive case, although the description of possessives as constituting a grammatical case in languages like English is often disputed. A more commonly used term in describing the grammar of various languages is genitive case, though this usually denotes a case with a broader range of functions than just producing possessive forms. Some languages occasionally use the dative case to denote the possessor, as in the Serbo-Croatian kosa mu je gusta 'his hair is thick' (literally 'the hair to him is thick', where 'to him' is the dative pronoun mu).[2] Some languages, such as the Cariban languages, can be said to have a possessed case, used to indicate the other party (the thing possessed) in a possession relationship.[3] A similar feature found in some languages is the possessive affix, usually a suffix, added to the (possessed) noun to indicate the possessor, as in the Finnish taloni ('my house') and Hungarian háza ('his/her house'), formed from talo and ház (the respective nouns meaning 'house'). In Hungarian this affix is also used when the possessor is represented by a full noun – 'Peter's house' may be translated either as Péter háza (literally 'Peter his-house'), or with an additional dative marker on the possessor noun: Péternek a háza ('to-Peter the his-house'). The glossing abbreviation POS or POSS may be used to indicate possessive forms. [Quoted from Wikipedia]"
+                    "A game is structured playing, usually undertaken for enjoyment and sometimes used as an educational tool. Games are distinct from work, which is usually carried out for remuneration, and from art, which is more often an expression of aesthetic or ideological elements. However, the distinction is not clear-cut, and many games are also considered to be work (such as professional players of spectator sports/games) or art (such as jigsaw puzzles or games involving an artistic layout such as Mahjong, solitaire, or some video games). Key components of games are goals, rules, challenge, and interaction. Games generally involve mental or physical stimulation, and often both. Many games help develop practical skills, serve as a form of exercise, or otherwise perform an educational, simulational, or psychological role. Attested as early as 2600 BC, games are a universal part of human experience and present in all cultures. The Royal Game of Ur, Senet, and Mancala are some of the oldest known games. [Quoted from Wikipedia]"
             td:
                 textarea(id="text3" class="source"):
-                    "mix (third-person singular simple present mixes, present participle mixing, simple past and past participle mixed or mixt) To stir two or more substances together. Mix the eggs and milk with the flour until the consistency is smooth. To combine items from two or more sources normally kept separate. to mix business with pleasure Don't mix the meat recipes with the dairy recipes. William Shakespeare (1564-1616) fair persuasions mixed with sugared words 1935, George Goodchild, chapter 1, Death on the Centre Court: She mixed furniture with the same fatal profligacy as she mixed drinks, and this outrageous contact between things which were intended by Nature to be kept poles apart gave her an inexpressible thrill. To form by mingling; to produce by the stirring together of ingredients; to compound of different parts. William Shakespeare (1564-1616) Hast thou no poison mixed? Francis Bacon (1561-1626) I have chosen an argument mixed of religious and civil considerations. 1935, George Goodchild, chapter 1, Death on the Centre Court: She mixed furniture with the same fatal profligacy as she mixed drinks, and this outrageous contact between things which were intended by Nature to be kept poles apart gave her an inexpressible thrill. To use a mixer (machine) on. Mix the egg whites until they are stiff. (music) To combine several tracks. I'll mix the rhythm tracks down to a single track. (music) To produce a finished version of a recording. I'm almost done mixing this song. To unite with in company; to join; to associate. Bible, Hoseah vii. 8 Ephraim, he hath mixed himself among the people. [Quoted from Wiktionary]"
-        tr:
-            for $i in [1:3]:
-                td:
-                    "Strength:"
-                    select(id="ratio$i"):
-                        for $j in [1:3]:
-                            option(value="$j"):
-                                "$j"
-        tr:
-            td(colspan="3" align="center"):
-                "Number of words in mix:"
-                select(id="num-words"):
-                    for $k in [500, 1000, 2000]:
-                        option(value="$k"):
-                            "$k"
-        tr:
-            td(colspan="3" align="center"):
-                button(type="button" id="mix-it"):
-                    "Mix it!"
-        tr:
-            td(colspan="3"):
-                textarea(id="mix"):
-                    "Result"
-    
+                    "Poetry is a form of literature that uses aesthetic and rhythmic qualities of language—such as phonaesthetics, sound symbolism, and metre—to evoke meanings in addition to, or in place of, the prosaic ostensible meaning. Poetry has a long history, dating back to the Sumerian Epic of Gilgamesh. Early poems evolved from folk songs such as the Chinese Shijing, or from a need to retell oral epics, as with the Sanskrit Vedas, Zoroastrian Gathas, and the Homeric epics, the Iliad and the Odyssey. Ancient attempts to define poetry, such as Aristotle's Poetics, focused on the uses of speech in rhetoric, drama, song and comedy. Later attempts concentrated on features such as repetition, verse form and rhyme, and emphasized the aesthetics which distinguish poetry from more objectively informative, prosaic forms of writing. From the mid-20th century, poetry has sometimes been more generally regarded as a fundamental creative act employing language. Poetry uses forms and conventions to suggest differential interpretation to words, or to evoke emotive responses. Devices such as assonance, alliteration, onomatopoeia and rhythm are sometimes used to achieve musical or incantatory effects. The use of ambiguity, symbolism, irony and other stylistic elements of poetic diction often leaves a poem open to multiple interpretations. Similarly figures of speech such as metaphor, simile and metonymy create a resonance between otherwise disparate images—a layering of meanings, forming connections previously not perceived. Kindred forms of resonance may exist, between individual verses, in their patterns of rhyme or rhythm. Some poetry types are specific to particular cultures and genres and respond to characteristics of the language in which the poet writes. Readers accustomed to identifying poetry with Dante, Goethe, Mickiewicz and Rumi may think of it as written in lines based on rhyme and regular meter; there are, however, traditions, such as Biblical poetry, that use other means to create rhythm and euphony. Much modern poetry reflects a critique of poetic tradition, playing with and testing, among other things, the principle of euphony itself, sometimes altogether forgoing rhyme or set rhythm. In today's increasingly globalized world, poets often adapt forms, styles and techniques from diverse cultures and languages [Quoted from Wikipedia]"
+    p:
+        b:
+            "Step 2. Make a mix."
+        "Merge the source texts and apply a Markov process to create a new, mixed text." 
+    p(class="indent"):
+        "Number of words in mix:"
+        select(id="num-words"):
+            for $k in [500, 1000, 2000]:
+                option(value="$k"):
+                    "$k"
+        "&nbsp;"
+        button(id="make-mix"):
+            "Mix!"
+        br()
+        br()
+        textarea(id="mix"):
+    p:
+        b:
+            "Step 3. Write a poem satisfying Rule M:"
+        "Each word of the poem is (a) a word with the same "
+        a(href="https://en.wikipedia.org/wiki/Word_stem"):    
+            "stem" 
+        "as a word in the mix or (b) a"
+        a(href="stop_words.txt"):
+            "stop word"
+        ". As an example of part (a), you can use 'required' if 'requiring' is in the mix." 
+    textarea(id="poem" class="indent")
+    br()
+    br()
+    p:
+        b:
+            "Step 4. Validate your poem."
+        "Check whether your poem satisfies Rule M."
+    p(class="indent"):
+        button(id="validate"):
+            "Validate!"
+    div(id="validation-report" class="indent")
+
     script(src='lib/jquery-2.1.1/jquery.min.js')
     script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
+    script(src='lib/porter_stemmer.min.js')
     script(src='js/markov.js')
 

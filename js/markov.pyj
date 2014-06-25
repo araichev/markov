@@ -1,6 +1,28 @@
 import stdlib
 
 PREFIX_LENGTH = 2
+STOP_WORDS = None
+# Load stop words
+$.get('../stop_words.txt', def(data):
+    nonlocal STOP_WORDS
+    STOP_WORDS = data.trim().split(RegExp('\\s+'))
+)
+
+def load_word_lists():
+    texts = [
+      $('#text1').val(), 
+      $('#text2').val(), 
+      $('#text3').val()]
+    word_lists = []
+    for text in texts:
+        word_list = text.trim().split(RegExp('\\s+'))
+        # word_list = re.split('\\s+', text) # requires ``import re``
+        if len(word_list) > PREFIX_LENGTH:
+            word_lists.append(word_list)
+    return word_lists
+
+def load_num_words():
+    return int($('#num-words').val())
 
 def get_words(word_lists, ratios):
     """
@@ -108,48 +130,57 @@ def get_mix(words, num_words, prefix_length=2):
         i += 1
     return result
 
-def get_word_lists_and_ratios():
-    user_texts = [
-      $('#text1').val(), 
-      $('#text2').val(), 
-      $('#text3').val()]
-    user_ratios = [
-      int($('#ratio1 option:selected').val()), 
-      int($('#ratio2 option:selected').val()), 
-      int($('#ratio3 option:selected').val())]
-    word_lists = []
-    ratios = []
-    for (i, st) in enumerate(user_texts):
-        # Grab non-whitespace words
-        word_list = st.trim().split(/\s+/) #st.match(/\S+/g) # or 
-        if len(word_list) > PREFIX_LENGTH:
-            word_lists.append(word_list)
-            ratios.append(user_ratios[i])
-    return word_lists, ratios
-
-def get_num_words():
-    return int($('#num-words').val())
-
-def put_mix(mix):
+def dump_mix(mix):
     $('#mix').val(mix)
 
-def main():
-    print('Hello!')
-    wl, r = get_word_lists_and_ratios()
-    print(r)
-    words = get_words(*get_word_lists_and_ratios())
-    print('source num words', len(words))
-    num_words = get_num_words()
-    print('mix num words', num_words)
-    mix = get_mix(words, num_words)
-    put_mix(mix.join(' '))
+def load_mix():
+    return $('#mix').val()
 
-$('#mix-it').click(def():
+def load_poem():
+    return $('#poem').val()
+
+def remove_punctuation(string):
+    return string.replace(
+      RegExp('[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), '')
+
+def validate():
+    mix = remove_punctuation(load_mix().trim()).split(RegExp('\\s+'))
+    mix_words = [word.toLowerCase() for word in mix
+      if word not in STOP_WORDS]
+    mix_stems = [stemmer(word) for word in mix_words]
+    poem_words = remove_punctuation(load_poem().trim()).split(RegExp('\\s+'))
+    invalid_words = []
+    for word in poem_words:
+        w = remove_punctuation(word.toLowerCase())
+        if w in STOP_WORDS:
+            continue
+        if stemmer(w) not in mix_stems and word not in invalid_words:
+            invalid_words.append(word)
+    return invalid_words
+
+def dump_validation(report):
+    $('#validation-report').html(report)
+
+$('#make-mix').click(def():
     $("#text1" ).effect("shake", {'times':3}, 800)
     $("#text2" ).effect("shake", {'times':3}, 1000)
     $("#text3" ).effect("shake", {'times':3}, 1200)
     setTimeout(def():
-        main() 
-    ,1400)
+        $("#mix" ).effect("shake", {'times':1}, 800)
+        print('Hello!')
+        word_lists = load_word_lists()
+        ratios = [1 for i in len(word_lists)]
+        words = get_words(word_lists, ratios)
+        print('source num words', len(words))
+        num_words = load_num_words()
+        print('mix num words', num_words)
+        mix = get_mix(words, num_words)
+        dump_mix(mix.join(' '))
+    ,1000)
 )        
-
+$('#validate').click(def():
+    invalid_words = validate()
+    report = '<p>The following words in your poem appear to be invalid: ' +\
+      invalid_words.join(', ') + '</p>'
+    dump_validation(report)
+)

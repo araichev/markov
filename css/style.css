@@ -12,15 +12,30 @@ body {
     font-weight: 500;
     color: inherit; }
 
-    header {
-      margin-bottom: 10px; }
-      header h1 {
-        font-size: 70px;
-        display: inline; }
-        header h2 {
-          font-size: 20px;
-          display: inline;
-          font-style: italic; }
+    h3 {
+      font-size: 100%;
+      font-weight: bold;
+      display: inline; }
+      h3:before {
+        content: "#";
+        color: #d7d7d7;
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        margin-left: -1em;
+        margin-top: -10px;
+        padding-right: 0em; }
+
+header {
+  margin-bottom: 10px; }
+  header h1 {
+    font-size: 70px;
+    display: inline; }
+    header h2 {
+      font-size: 20px;
+      display: inline;
+      font-style: italic;
+      margin-left: -0.1em; }
 
 a {
   color: royalblue;
@@ -37,19 +52,18 @@ p {
     font: inherit;
     margin: 1em 0em; }
     table td {
-      padding: 0 5px 0 0; }
+      padding: 0 15px 0 0; }
 
-.indent {
-  margin-left: 2em; }
-
-  textarea {
-    font: inherit;
-    resize: none;
-    width: 755px;
-    height: 250px;
-    padding: 5px; }
-    textarea.source {
-      width: 240px; }
-
-#validation-report {
-  font-family: consolas, monospace; }
+textarea {
+  background-color: #ebebeb;
+  font-family: consolas;
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  resize: none;
+  width: 745px;
+  height: 250px; }
+  textarea.source {
+    width: 225px; }
+    textarea.short {
+      height: 50px; }

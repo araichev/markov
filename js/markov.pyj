@@ -180,7 +180,7 @@ $('#make-mix').click(def():
 )        
 $('#validate').click(def():
     invalid_words = validate()
-    report = '<p>The following words in your poem appear to be invalid: ' +\
-      invalid_words.join(', ') + '</p>'
+    report = '<p>The following words in your poem appear to be invalid:</p>' +\
+    '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
     dump_validation(report)
 )

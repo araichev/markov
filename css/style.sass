@@ -1,11 +1,17 @@
 $highlight-color: rgb(213, 62, 79) 
 $opacity: 1.0
 $font-size: 16px 
-$small-font-size: 14px
-$tiny-font-size: 12px
+$medium-font-size: 14px
+$small-font-size: 12px
 $background-color: white
 $border-radius: 5px
+$gray: rgb(235, 235, 235)
 
+@mixin box
+    background-color: $gray
+    font-family: consolas
+    font-size: $medium-font-size
+    padding: 10px
 @mixin font($size, $line-height)
     font-family: "open_sansregular", Helvetica, sans-serif 
     / font-family: 'Georgia', serif
@@ -20,6 +26,19 @@ body
 h1, h2, h3, h4, h5, h6
     font-weight: 500
     color: inherit
+h3
+    font-size: 100%
+    font-weight: bold
+    display: inline
+    &:before
+        content: "#"
+        color: $gray - 20
+        font-size: 30px
+        font-weight: bold
+        position: absolute
+        margin-left: -1em
+        margin-top: -10px
+        padding-right: 0em
 header
     margin-bottom: 10px
     h1
@@ -29,6 +48,7 @@ header
         font-size: 20px
         display: inline
         font-style: italic
+        margin-left: -0.1em
 a
     color: royalblue
     text-decoration: none
@@ -42,16 +62,14 @@ table
     font: inherit
     margin: 1em 0em
     td
-        padding: 0 5px 0 0
-.indent
-    margin-left: 2em 
+        padding: 0 15px 0 0
 textarea
-    font: inherit
+    @include box
+    border: none
     resize: none
-    width: 755px
+    width: 745px
     height: 250px
-    padding: 5px
     &.source
-        width: 240px
-#validation-report
-    font-family: consolas, monospace
+        width: 225px
+    &.short
+        height: 50px

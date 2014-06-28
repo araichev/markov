@@ -1,6 +1,8 @@
 Markov: A Game of Poems
 ========================
-Website for a book project.q
+Website for a book project.  
+Sneak peak available on RawGit `here <https://rawgit.com/araichev/markov/master/index.html>`_.
+Proper site URL coming soon.
 
 Requirements
 ------------
@@ -10,4 +12,4 @@ Requirements
 
 Todo
 ----
-Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``).
+- Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``).

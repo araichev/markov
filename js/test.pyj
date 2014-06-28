@@ -1,3 +1,5 @@
+import stdlib
+
 def pack(items):
     """
     Because RapydScript doesn't have ordered items, 
@@ -28,7 +30,7 @@ def get_markov_analysis(text, prefix_length=2):
         prefix = pack(words[i:i + prefix_length])
         suffix = words[i + prefix_length]
         if prefix in result:
-            result[prefix].push(suffix)
+            result[prefix].append(suffix)
         else:
             result[prefix] = [suffix]
     return result

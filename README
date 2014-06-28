@@ -1,0 +1,7 @@
+Markov: A Game of Poems
+========================
+Website for a book project.
+
+Todo
+----
+Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``).

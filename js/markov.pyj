@@ -8,14 +8,28 @@ $.get('../stop_words.txt', def(data):
     STOP_WORDS = data.trim().split(RegExp('\\s+'))
 )
 
+def normalize(string):
+    """
+    Remove the punctuation from the given text string, lowercase all words,
+    and return the resulting text string.
+    """
+    return string.replace(
+      RegExp('[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), 
+      '').toLowerCase()
+
 def load_word_lists():
+    """
+    Return a list of at most three lists of words.
+    Each word list is obtained by normalizing and splitting the texts from
+    the three source text boxes on the webpage.
+    """
     texts = [
-      $('#text1').val(), 
-      $('#text2').val(), 
-      $('#text3').val()]
+      $('#source1').val(), 
+      $('#source2').val(), 
+      $('#source3').val()]
     word_lists = []
     for text in texts:
-        word_list = text.trim().split(RegExp('\\s+'))
+        word_list = normalize(text.trim()).split(RegExp('\\s+'))
         # word_list = re.split('\\s+', text) # requires ``import re``
         if len(word_list) > PREFIX_LENGTH:
             word_lists.append(word_list)
@@ -24,18 +38,17 @@ def load_word_lists():
 def load_num_words():
     return int($('#num-words').val())
 
-def get_words(word_lists, ratios):
+def get_words(word_lists, portions):
     """
-    Merge the list of texts according to the given ratios and
-    return the resulting text split into words.
+    Truncate the given word lists according to the given portions,
+    concatenate the truncations into one word list, and return the result.
     """
-
-    # Truncate word_lists to accord with ratios
-    R = sum(ratios)
+    # Truncate word_lists to accord with portions
+    P = sum(portions)
     m = Math.min(*[len(wl) for wl in word_lists])
-    counts = [Math.max(PREFIX_LENGTH, Math.ceil(m*r/R)) for r in ratios]
+    counts = [Math.max(PREFIX_LENGTH, Math.ceil(m*p/P)) for p in portions]
     word_lists = [word_lists[i][:counts[i]] for i in range(len(word_lists))] 
-    # Combine word lists into one word list
+    # Concatenate word lists into one word list
     result = []
     for wl in word_lists:
         result.extend(wl)
@@ -43,21 +56,25 @@ def get_words(word_lists, ratios):
 
 def pack(items):
     """
-    Because RapydScript doesn't have ordered items :-(, 
-    use item1##item2 to simulate one 
+    Turn the given list of strings into the single string 
+    item1##item2##...##itemN to simulate a tuple.
+    RapydScript doesn't have tuple objects :-(
     """
     return items.join('##')
 
-def unpack(items):
-    return items.split('##')
+def unpack(string):
+    """
+    The inverse of ``pack()``.
+    """
+    return string.split('##')
 
 def get_markov_analysis(words, prefix_length=PREFIX_LENGTH):
     """
-    Return a Markov analysis of the list of strings ``words``.
+    Return a Markov analysis of the given list of words.
     The output format is a dictionary with structure: 
     a tuple of contiguous words in ``words`` of length ``prefix_length`` 
     (a prefix) -> a list of all individual words in ``words`` that occur 
-    after that prefix.
+    after that prefix (list includes repeats).
     """
     result = {}
     for i in range(len(words) - prefix_length):
@@ -72,11 +89,10 @@ def get_markov_analysis(words, prefix_length=PREFIX_LENGTH):
 def shuffle(a):
     """
     Randomly shuffle the given list and return the result.
-    Uses the Fisher–Yates shuffle, which is explained well at 
+    Use the Fisher–Yates shuffle, which is well explained at 
     http:#bost.ocks.org/mike/shuffle/ .
     """
     m = len(a) - 1
-
     # While there remain elements to shuffle
     while m: 
         # Pick a remaining element
@@ -84,12 +100,11 @@ def shuffle(a):
         # And swap it with the current element
         a[m], a[i] = a[i], a[m]
         m -= 1
-
     return a
 
 def choose(a):
     """
-    Return a random element from the given list
+    Return a random element from the given list.
     """
     i = Math.floor(Math.random()*len(a))
     return a[i]
@@ -139,22 +154,16 @@ def load_mix():
 def load_poem():
     return $('#poem').val()
 
-def remove_punctuation(string):
-    return string.replace(
-      RegExp('[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), '')
-
 def validate():
-    mix = remove_punctuation(load_mix().trim()).split(RegExp('\\s+'))
-    mix_words = [word.toLowerCase() for word in mix
-      if word not in STOP_WORDS]
+    mix = normalize(load_mix().trim()).split(RegExp('\\s+'))
+    mix_words = [word for word in mix if word not in STOP_WORDS]
     mix_stems = [stemmer(word) for word in mix_words]
-    poem_words = remove_punctuation(load_poem().trim()).split(RegExp('\\s+'))
+    poem_words = normalize(load_poem().trim()).split(RegExp('\\s+'))
     invalid_words = []
     for word in poem_words:
-        w = remove_punctuation(word.toLowerCase())
-        if w in STOP_WORDS:
+        if word in STOP_WORDS:
             continue
-        if stemmer(w) not in mix_stems and word not in invalid_words:
+        if stemmer(word) not in mix_stems and word not in invalid_words:
             invalid_words.append(word)
     return invalid_words
 
@@ -162,15 +171,15 @@ def dump_validation(report):
     $('#validation-report').html(report)
 
 $('#make-mix').click(def():
-    $("#text1" ).effect("shake", {'times':3}, 800)
-    $("#text2" ).effect("shake", {'times':3}, 1000)
-    $("#text3" ).effect("shake", {'times':3}, 1200)
+    $("#source1" ).effect("shake", {'times':3}, 800)
+    $("#source2" ).effect("shake", {'times':3}, 1000)
+    $("#source3" ).effect("shake", {'times':3}, 1200)
     setTimeout(def():
         $("#mix" ).effect("shake", {'times':1}, 800)
         print('Hello!')
         word_lists = load_word_lists()
-        ratios = [1 for i in len(word_lists)]
-        words = get_words(word_lists, ratios)
+        portions = [1 for i in len(word_lists)]
+        words = get_words(word_lists, portions)
         print('source num words', len(words))
         num_words = load_num_words()
         print('mix num words', num_words)
@@ -180,7 +189,8 @@ $('#make-mix').click(def():
 )        
 $('#validate').click(def():
     invalid_words = validate()
-    report = '<p>The following words in your poem appear to be invalid:</p>' +\
+    report = '<p>The following words in your poem ' +\
+    'appear to violate Rule M(a):</p>' +\
     '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
     dump_validation(report)
 )

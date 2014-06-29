@@ -1,8 +1,7 @@
 Markov: A Game of Poems
 ========================
-Website for a book project.  
+Project in development.  
 Sneak peak available on RawGit `here <https://rawgit.com/araichev/markov/master/index.html>`_.
-Proper site URL coming soon.
 
 Requirements
 ------------

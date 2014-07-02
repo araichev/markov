@@ -26,7 +26,7 @@
     }
     function _$rapyd$_in(val, arr) {
         if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
-        else return arr.hasOwnProperty(val)   // val in arr;
+        else return val in arr;
     }
     function dir(item) {
         var arr = [];
@@ -343,10 +343,7 @@
         }
     };
     PREFIX_LENGTH = 2;
-    STOP_WORDS = null;
-    $.get("../extra/stop_words.txt", function(data) {
-        STOP_WORDS = data.trim().split(new RegExp("\\s+"));
-    });
+    STOP_WORDS = [ "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now" ];
     function normalize(string) {
         "\n    Remove the punctuation from the given text string, lowercase all words,\n    and return the resulting text string.\n    ";
         return string.replace(new RegExp("[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), "").toLowerCase();

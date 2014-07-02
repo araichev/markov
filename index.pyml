@@ -12,7 +12,7 @@ body():
         h1:
             "Markov"
         a(href="https://en.wikipedia.org/wiki/Andrey_Markov"):
-            img(src="extra/andrey_markov.png" title="Andrey Markov")
+            img(src="misc/andrey_markov.png" title="Andrey Markov")
         h2:
             "A Game of Poems"  
     p:
@@ -56,7 +56,7 @@ body():
         a(href="https://en.wikipedia.org/wiki/Word_stem"):    
             "stem" 
         "as a word in the mix or (b) a"
-        a(href="extra/stop_words.txt"):
+        a(href="misc/stop_words.txt"):
             "stop word"
         ". As an example of part (a), you can use 'required' if 'requiring' is in the mix." 
     p:
@@ -75,4 +75,5 @@ body():
     script(src='lib/jquery-2.1.1/jquery.min.js')
     script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
     script(src='lib/porter_stemmer.min.js')
+    #script(src='js/markov.js')
     script(src='js/markov_faster.js')

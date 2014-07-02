@@ -26,12 +26,7 @@
     }
     function _$rapyd$_in(val, arr) {
         if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
-        else {
-            for (i in arr) {
-                if (arr.hasOwnProperty(i) && i === val) return true;
-            }
-            return false;
-        }
+        else return arr.hasOwnProperty(val)   // val in arr;
     }
     function dir(item) {
         var arr = [];
@@ -50,7 +45,7 @@
         output = JSON.stringify(args);
         if ("console" in window) console.log(output.substr(1, output.length-2));
     }
-    var JSON, str, text;
+    var JSON, str, PREFIX_LENGTH, STOP_WORDS;
             JSON = JSON || {};
     if (!JSON.stringify) {
         
@@ -347,26 +342,81 @@
             delete hash[key];
         }
     };
+    PREFIX_LENGTH = 2;
+    STOP_WORDS = null;
+    $.get("../extra/stop_words.txt", function(data) {
+        STOP_WORDS = data.trim().split(new RegExp("\\s+"));
+    });
+    function normalize(string) {
+        "\n    Remove the punctuation from the given text string, lowercase all words,\n    and return the resulting text string.\n    ";
+        return string.replace(new RegExp("[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), "").toLowerCase();
+    }
+    function load_word_lists() {
+        var texts, word_lists, word_list, text;
+        "\n    Return a list of at most three lists of words.\n    Each word list is obtained by normalizing and splitting the texts from\n    the three source text boxes on the webpage.\n    ";
+        texts = [ $("#source1").val(), $("#source2").val(), $("#source3").val() ];
+        word_lists = [];
+        var _$rapyd$_Iter6 = texts;
+        for (var _$rapyd$_Index6 = 0; _$rapyd$_Index6 < _$rapyd$_Iter6.length; _$rapyd$_Index6++) {
+            text = _$rapyd$_Iter6[_$rapyd$_Index6];
+            word_list = normalize(text.trim()).split(new RegExp("\\s+"));
+            if (len(word_list) > PREFIX_LENGTH) {
+                word_lists.append(word_list);
+            }
+        }
+        return word_lists;
+    }
+    function load_num_words() {
+        return parseInt($("#num-words").val());
+    }
+    function get_words(word_lists, portions) {
+        var P, m, counts, result, wl;
+        "\n    Truncate the given word lists according to the given portions,\n    concatenate the truncations into one word list, and return the result.\n    ";
+        P = sum(portions);
+        m = Math.min.apply(Math, [].concat((function() {
+            var _$rapyd$_Iter = word_lists, _$rapyd$_Result = [], wl;
+            for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                wl = _$rapyd$_Iter[_$rapyd$_Index];
+                _$rapyd$_Result.push(len(wl));
+            }
+            return _$rapyd$_Result;
+        })()));
+        counts = (function() {
+            var _$rapyd$_Iter = portions, _$rapyd$_Result = [], p;
+            for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                p = _$rapyd$_Iter[_$rapyd$_Index];
+                _$rapyd$_Result.push(Math.max(PREFIX_LENGTH, Math.ceil(m * p / P)));
+            }
+            return _$rapyd$_Result;
+        })();
+        word_lists = (function() {
+            var _$rapyd$_Iter = range(len(word_lists)), _$rapyd$_Result = [], i;
+            for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                i = _$rapyd$_Iter[_$rapyd$_Index];
+                _$rapyd$_Result.push(word_lists[i].slice(0, counts[i]));
+            }
+            return _$rapyd$_Result;
+        })();
+        result = [];
+        var _$rapyd$_Iter7 = word_lists;
+        for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
+            wl = _$rapyd$_Iter7[_$rapyd$_Index7];
+            result.extend(wl);
+        }
+        return result;
+    }
     function pack(items) {
-        "\n    Because RapydScript doesn't have ordered items, \n    use item1##item2##...##itemN to simulate one \n    ";
+        "\n    Turn the given list of strings into the single string \n    item1##item2##...##itemN to simulate a tuple.\n    RapydScript doesn't have tuple objects :-(\n    ";
         return items.join("##");
     }
-    function timeit(fun) {
-        function wrap(a, b) {
-            var s;
-            s = Date.now();
-            a = fun(a, b);
-            console.log(Date.now() - s);
-            return a;
-        }
-        return wrap;
+    function unpack(string) {
+        "\n    The inverse of ``pack()``.\n    ";
+        return string.split("##");
     }
-    
-    function get_markov_analysis(text, prefix_length) {
-        if (typeof prefix_length === "undefined") prefix_length = 2;
-        var words, result, prefix, suffix, i;
-        "\n    Return a Markov analysis of the list of strings ``words``.\n    The output format is a dictionary with structure: \n    a tuple of contiguous words in ``words`` of length ``prefix_length`` \n    (a prefix) -> a list of all individual words in ``words`` that occur \n    after that prefix.\n    ";
-        words = text.trim().split(/\s+/);
+    function get_markov_analysis(words, prefix_length) {
+        if (typeof prefix_length === "undefined") prefix_length = PREFIX_LENGTH;
+        var result, prefix, suffix, i;
+        "\n    Return a Markov analysis of the given list of words.\n    The output format is a dictionary with structure: \n    a tuple of contiguous words in ``words`` of length ``prefix_length`` \n    (a prefix) -> a list of all individual words in ``words`` that occur \n    after that prefix (list includes repeats).\n    ";
         result = {};
         for (i = 0; i < len(words) - prefix_length; i++) {
             prefix = pack(words.slice(i, i + prefix_length));
@@ -378,9 +428,134 @@
             }
         }
         return result;
-    }    get_markov_analysis = timeit(get_markov_analysis);
-
-    text = $("body").text();
-    _$rapyd$_print(len(text));
-    get_markov_analysis(text);
+    }
+    function shuffle(a) {
+        var i, _$rapyd$_Unpack, m;
+        "\n    Randomly shuffle the given list and return the result.\n    Use the Fisher–Yates shuffle, which is well explained at \n    http:#bost.ocks.org/mike/shuffle/ .\n    ";
+        m = len(a) - 1;
+        while (m) {
+            i = Math.floor(Math.random() * m);
+            _$rapyd$_Unpack = [a[i], a[m]];
+            a[m] = _$rapyd$_Unpack[0];
+            a[i] = _$rapyd$_Unpack[1];
+            m -= 1;
+        }
+        return a;
+    }
+    function choose(a) {
+        var i;
+        "\n    Return a random element from the given list.\n    ";
+        i = Math.floor(Math.random() * len(a));
+        return a[i];
+    }
+    function get_mix(words, num_words, prefix_length) {
+        if (typeof prefix_length === "undefined") prefix_length = 2;
+        var d, prefixes, result, prefix, s, suffix, i;
+        "\n    Return a list of ``num_words`` random words from \n    the given list of words. \n    Do this by shuffling ``d = get_markov_analysis(words, prefix_length)``,\n    and traversing ``d`` until ``num_words`` random words have been \n    generated.\n    ";
+        d = get_markov_analysis(words, prefix_length);
+        if (!len(d)) {
+            return [];
+        }
+        prefixes = shuffle(dict.keys(d));
+        result = unpack(prefixes[0]);
+        i = 0;
+        while (i < num_words) {
+            prefix = pack(result.slice(i, i + prefix_length));
+            while (!(_$rapyd$_in(prefix, d))) {
+                prefix = choose(prefixes);
+            }
+            s = d[prefix];
+            suffix = choose(s);
+            result.append(suffix);
+            i += 1;
+        }
+        return result;
+    }
+    function dump_mix(mix) {
+        $("#mix").val(mix);
+    }
+    function load_mix() {
+        return $("#mix").val();
+    }
+    function load_poem() {
+        return $("#poem").val();
+    }
+    function validate() {
+        var mix, mix_words, mix_stems, poem_words, invalid_words, word;
+        mix = normalize(load_mix().trim()).split(new RegExp("\\s+"));
+        mix_words = (function() {
+            var _$rapyd$_Iter = mix, _$rapyd$_Result = [], word;
+            for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                word = _$rapyd$_Iter[_$rapyd$_Index];
+                if (!(_$rapyd$_in(word, STOP_WORDS))) {
+                    _$rapyd$_Result.push(word);
+                }
+            }
+            return _$rapyd$_Result;
+        })();
+        mix_stems = (function() {
+            var _$rapyd$_Iter = mix_words, _$rapyd$_Result = [], word;
+            for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                word = _$rapyd$_Iter[_$rapyd$_Index];
+                _$rapyd$_Result.push(stemmer(word));
+            }
+            return _$rapyd$_Result;
+        })();
+        poem_words = normalize(load_poem().trim()).split(new RegExp("\\s+"));
+        invalid_words = [];
+        var _$rapyd$_Iter8 = poem_words;
+        for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
+            word = _$rapyd$_Iter8[_$rapyd$_Index8];
+            _$rapyd$_print("STOP_WORDS", STOP_WORDS);
+            if (_$rapyd$_in(word, STOP_WORDS)) {
+                continue;
+            }
+            if (!(_$rapyd$_in(stemmer(word), mix_stems)) && !(_$rapyd$_in(word, invalid_words))) {
+                invalid_words.append(word);
+            }
+        }
+        return invalid_words;
+    }
+    function dump_validation(report) {
+        $("#validation-report").html(report);
+    }
+    $("#make-mix").click(function() {
+        $("#source1").effect("shake", {
+            "times": 3
+        }, 800);
+        $("#source2").effect("shake", {
+            "times": 3
+        }, 1e3);
+        $("#source3").effect("shake", {
+            "times": 3
+        }, 1200);
+        setTimeout(function() {
+            var word_lists, portions, words, num_words, mix;
+            $("#mix").effect("shake", {
+                "times": 1
+            }, 800);
+            _$rapyd$_print("Hello!");
+            word_lists = load_word_lists();
+            portions = (function() {
+                var _$rapyd$_Iter = len(word_lists), _$rapyd$_Result = [], i;
+                for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                    i = _$rapyd$_Iter[_$rapyd$_Index];
+                    _$rapyd$_Result.push(1);
+                }
+                return _$rapyd$_Result;
+            })();
+            words = get_words(word_lists, portions);
+            _$rapyd$_print("source num words", len(words));
+            num_words = load_num_words();
+            _$rapyd$_print("mix num words", num_words);
+            mix = get_mix(words, num_words);
+            dump_mix(mix.join(" "));
+        }, 1e3);
+    });
+    $("#validate").click(function() {
+        var invalid_words, report;
+        invalid_words = validate();
+        report = "<p>The following words in your poem " + "appear to violate Rule M(a):</p>" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+        dump_validation(report);
+    });
 })();

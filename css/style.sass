@@ -12,6 +12,7 @@ $gray: rgb(235, 235, 235)
     font-family: consolas
     font-size: $medium-font-size
     padding: 10px
+    border-radius: 5px
 @mixin font($size, $line-height)
     font-family: "open_sansregular", Helvetica, sans-serif 
     / font-family: 'Georgia', serif
@@ -40,12 +41,13 @@ h3
         margin-top: -10px
         padding-right: 0em
 header
-    margin-bottom: 20px
+    margin-bottom: 25px
     h1
         font-size: 70px
         display: inline
+        margin-left: -5px
     h2
-        font-size: 20px
+        font-size: 25px
         display: inline
         font-style: italic
     img
@@ -56,11 +58,23 @@ header
         text-decoration: none
         &:hover, &:active
             text-decoration: none
+#nav
+    ul
+        list-style-type: none
+        margin-top: -10px
+        padding-left: 0
+        li
+            display: inline
+            margin-left: 0
 a
     color: royalblue
     text-decoration: none
     &:hover, &:active
         text-decoration: underline
+body#index a#nav-index, body#examples a#nav-examples
+    color: inherit
+    &:hover, &:active
+        text-decoration: none
 p 
     margin: 0 0 1em 0
 table
@@ -80,3 +94,5 @@ textarea
         width: 225px
     &.short
         height: 50px
+pre
+    @include box

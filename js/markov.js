@@ -349,7 +349,7 @@
     };
     PREFIX_LENGTH = 2;
     STOP_WORDS = null;
-    $.get("../stop_words.txt", function(data) {
+    $.get("../extra/stop_words.txt", function(data) {
         STOP_WORDS = data.trim().split(new RegExp("\\s+"));
     });
     function normalize(string) {
@@ -511,6 +511,7 @@
         var _$rapyd$_Iter8 = poem_words;
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
             word = _$rapyd$_Iter8[_$rapyd$_Index8];
+            _$rapyd$_print("STOP_WORDS", STOP_WORDS);
             if (_$rapyd$_in(word, STOP_WORDS)) {
                 continue;
             }

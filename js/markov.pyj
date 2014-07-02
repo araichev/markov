@@ -3,7 +3,7 @@ import stdlib
 PREFIX_LENGTH = 2
 STOP_WORDS = None
 # Load stop words
-$.get('../stop_words.txt', def(data):
+$.get('../extra/stop_words.txt', def(data):
     nonlocal STOP_WORDS
     STOP_WORDS = data.trim().split(RegExp('\\s+'))
 )
@@ -161,6 +161,7 @@ def validate():
     poem_words = normalize(load_poem().trim()).split(RegExp('\\s+'))
     invalid_words = []
     for word in poem_words:
+        print('STOP_WORDS', STOP_WORDS)
         if word in STOP_WORDS:
             continue
         if stemmer(word) not in mix_stems and word not in invalid_words:

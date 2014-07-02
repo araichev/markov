@@ -1,7 +1,7 @@
 Markov: A Game of Poems
 ========================
-Project in development.  
-Sneak peak available on RawGit `here <https://rawgit.com/araichev/markov/master/index.html>`_.
+Poetry project under development.  
+Preview on RawGit `here <https://rawgit.com/araichev/markov/master/index.html>`_.
 
 Requirements
 ------------
@@ -11,4 +11,5 @@ Requirements
 
 Todo
 ----
-- Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``).
+- Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``)
+- Upgrade RapydScript when `this bottleneck i discovered <https://groups.google.com/forum/#!msg/rapydscript/49MZUfDolrs/VQa0Md5AZFIJ>`_ gets resolved

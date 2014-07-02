@@ -27,12 +27,13 @@ body {
         padding-right: 0em; }
 
 header {
-  margin-bottom: 20px; }
+  margin-bottom: 25px; }
   header h1 {
     font-size: 70px;
-    display: inline; }
+    display: inline;
+    margin-left: -5px; }
     header h2 {
-      font-size: 20px;
+      font-size: 25px;
       display: inline;
       font-style: italic; }
       header img {
@@ -44,11 +45,25 @@ header {
           header a:hover, header a:active {
             text-decoration: none; }
 
+#nav ul {
+  list-style-type: none;
+  margin-top: -10px;
+  padding-left: 0; }
+  #nav ul li {
+    display: inline;
+    margin-left: 0; }
+
 a {
   color: royalblue;
   text-decoration: none; }
   a:hover, a:active {
     text-decoration: underline; }
+
+body#index a#nav-index, body#examples a#nav-examples {
+  color: inherit; }
+  body#index a#nav-index:hover, body#index a#nav-index:active,
+  body#examples a#nav-examples:hover, body#examples a#nav-examples:active {
+    text-decoration: none; }
 
 p {
   margin: 0 0 1em 0; }
@@ -66,6 +81,7 @@ textarea {
   font-family: consolas;
   font-size: 14px;
   padding: 10px;
+  border-radius: 5px;
   border: none;
   resize: none;
   width: 745px;
@@ -74,3 +90,10 @@ textarea {
     width: 225px; }
     textarea.short {
       height: 50px; }
+
+pre {
+  background-color: #ebebeb;
+  font-family: consolas;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px; }

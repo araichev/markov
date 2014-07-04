@@ -26,7 +26,12 @@
     }
     function _$rapyd$_in(val, arr) {
         if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
-        else return val in arr;
+        else {
+            for (i in arr) {
+                if (arr.hasOwnProperty(i) && i === val) return true;
+            }
+            return false;
+        }
     }
     function dir(item) {
         var arr = [];
@@ -557,5 +562,8 @@
             report = "<p>Success!</p>";
         }
         dump_validation(report);
+        $("html, body").animate({
+            scrollTop: $("#validate").offset().top
+        }, 2e3);
     });
 })();

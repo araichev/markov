@@ -557,5 +557,8 @@
             report = "<p>Success!</p>";
         }
         dump_validation(report);
+        $("html, body").animate({
+            scrollTop: $("#validate").offset().top
+        }, 2e3);
     });
 })();

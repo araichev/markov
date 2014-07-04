@@ -503,7 +503,6 @@
         var _$rapyd$_Iter8 = poem_words;
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
             word = _$rapyd$_Iter8[_$rapyd$_Index8];
-            _$rapyd$_print("STOP_WORDS", STOP_WORDS);
             if (_$rapyd$_in(word, STOP_WORDS)) {
                 continue;
             }
@@ -552,7 +551,11 @@
     $("#validate").click(function() {
         var invalid_words, report;
         invalid_words = validate();
-        report = "<p>The following words in your poem " + "appear to violate Rule M(a):</p>" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+        if (len(invalid_words) > 0) {
+            report = "<p>The following words in your poem " + "appear to violate Rule M(a):</p>" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+        } else {
+            report = "<p>Success!</p>";
+        }
         dump_validation(report);
     });
 })();

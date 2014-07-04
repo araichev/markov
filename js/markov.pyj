@@ -162,7 +162,6 @@ def validate():
     poem_words = normalize(load_poem().trim()).split(RegExp('\\s+'))
     invalid_words = []
     for word in poem_words:
-        print('STOP_WORDS', STOP_WORDS)
         if word in STOP_WORDS:
             continue
         if stemmer(word) not in mix_stems and word not in invalid_words:
@@ -191,8 +190,11 @@ $('#make-mix').click(def():
 )        
 $('#validate').click(def():
     invalid_words = validate()
-    report = '<p>The following words in your poem ' +\
-    'appear to violate Rule M(a):</p>' +\
-    '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
+    if len(invalid_words) > 0:
+        report = '<p>The following words in your poem ' +\
+        'appear to violate Rule M(a):</p>' +\
+        '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
+    else:
+        report = '<p>Success!</p>'
     dump_validation(report)
 )

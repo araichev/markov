@@ -1,6 +1,7 @@
 Markov: A Game of Poems
 ========================
 Poetry project under development.  
+Site at `markov-poems.net <http://markov-poems.net>`_.
 
 Requirements
 ------------

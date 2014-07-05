@@ -349,6 +349,7 @@
     STOP_WORDS = null;
     $.get("misc/stop_words.txt", function(data) {
         STOP_WORDS = data.trim().split(new RegExp("\\s+"));
+        $("#stop-words").prop("title", STOP_WORDS.join(", "));
     });
     function normalize(string) {
         "\n    Remove the punctuation from the given text string, lowercase all words,\n    and return the resulting text string.\n    ";

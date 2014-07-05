@@ -28,18 +28,9 @@ h1, h2, h3, h4, h5, h6
     font-weight: 500
     color: inherit
 h3
-    font-size: 100%
+    font-size: 120%
     font-weight: bold
     display: inline
-    &:before
-        content: ">"
-        color: $gray - 20
-        font-size: 30px
-        font-weight: bold
-        position: absolute
-        margin-left: -1em
-        margin-top: -10px
-        padding-right: 0em
 header
     margin-bottom: 25px
     h1
@@ -75,13 +66,26 @@ body#index a#nav-index, body#examples a#nav-examples
     color: inherit
     &:hover, &:active
         text-decoration: none
+ol
+    margin-left: 0
+    padding-left: 0
+    li
+        margin-left: 0
+        / &:before
+        /     content: ">"
+        /     color: $gray - 20
+        /     font-size: 30px
+        /     font-weight: bold
+        /     position: absolute
+        /     margin-left: -1.7em
+        /     margin-top: -7px
+        /     padding-right: 0em
 p 
     margin: 0 0 1em 0
 table
     border-collapse: collapse
     width: 750px
     font: inherit
-    margin: 1em 0em
     td
         padding: 0 15px 0 0
 textarea
@@ -90,9 +94,10 @@ textarea
     resize: none
     width: 745px
     height: 250px
+    margin: 1em 0
     &.source
         width: 225px
     &.short
         height: 50px
-pre
-    @include box
+center
+    margin-top: 1em

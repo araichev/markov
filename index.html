@@ -23,100 +23,93 @@
             A Game of Poems
         </h2>
     </header>
-    <p>
-        <h3>
-            Step 1.
-        </h3>
-        PICK one to three source texts and paste them into the boxes below.
-    </p>
-    <p>
-        <table>
-            <tr>
-                <td>
-                    <textarea maxlength="1000000" id="source1" class="source">
-                        In probability theory and statistics, a Markov process or Markoff process, named after the Russian mathematician Andrey Markov, is a stochastic process that satisfies the Markov property. A Markov process can be thought of as 'memoryless': loosely speaking, a process satisfies the Markov property if one can make predictions for the future of the process based solely on its present state just as well as one could knowing the process's full history. I.e., conditional on the present state of the system, its future and past are independent [Quoted from Wikipedia]
-                    </textarea>
-                </td>
-                <td>
-                    <textarea maxlength="1000000" id="source2" class="source">
-                        A game is structured playing, usually undertaken for enjoyment and sometimes used as an educational tool. Games are distinct from work, which is usually carried out for remuneration, and from art, which is more often an expression of aesthetic or ideological elements. However, the distinction is not clear-cut, and many games are also considered to be work (such as professional players of spectator sports/games) or art (such as jigsaw puzzles or games involving an artistic layout such as Mahjong, solitaire, or some video games). Key components of games are goals, rules, challenge, and interaction. Games generally involve mental or physical stimulation, and often both. Many games help develop practical skills, serve as a form of exercise, or otherwise perform an educational, simulational, or psychological role. Attested as early as 2600 BC, games are a universal part of human experience and present in all cultures. The Royal Game of Ur, Senet, and Mancala are some of the oldest known games. [Quoted from Wikipedia]
-                    </textarea>
-                </td>
-                <td>
-                    <textarea maxlength="1000000" id="source3" class="source">
-                        Poetry is a form of literature that uses aesthetic and rhythmic qualities of language—such as phonaesthetics, sound symbolism, and metre—to evoke meanings in addition to, or in place of, the prosaic ostensible meaning. Poetry has a long history, dating back to the Sumerian Epic of Gilgamesh. Early poems evolved from folk songs such as the Chinese Shijing, or from a need to retell oral epics, as with the Sanskrit Vedas, Zoroastrian Gathas, and the Homeric epics, the Iliad and the Odyssey. Ancient attempts to define poetry, such as Aristotle's Poetics, focused on the uses of speech in rhetoric, drama, song and comedy. Later attempts concentrated on features such as repetition, verse form and rhyme, and emphasized the aesthetics which distinguish poetry from more objectively informative, prosaic forms of writing. From the mid-20th century, poetry has sometimes been more generally regarded as a fundamental creative act employing language. Poetry uses forms and conventions to suggest differential interpretation to words, or to evoke emotive responses. Devices such as assonance, alliteration, onomatopoeia and rhythm are sometimes used to achieve musical or incantatory effects. The use of ambiguity, symbolism, irony and other stylistic elements of poetic diction often leaves a poem open to multiple interpretations. Similarly figures of speech such as metaphor, simile and metonymy create a resonance between otherwise disparate images—a layering of meanings, forming connections previously not perceived. Kindred forms of resonance may exist, between individual verses, in their patterns of rhyme or rhythm. Some poetry types are specific to particular cultures and genres and respond to characteristics of the language in which the poet writes. Readers accustomed to identifying poetry with Dante, Goethe, Mickiewicz and Rumi may think of it as written in lines based on rhyme and regular meter; there are, however, traditions, such as Biblical poetry, that use other means to create rhythm and euphony. Much modern poetry reflects a critique of poetic tradition, playing with and testing, among other things, the principle of euphony itself, sometimes altogether forgoing rhyme or set rhythm. In today's increasingly globalized world, poets often adapt forms, styles and techniques from diverse cultures and languages [Quoted from Wikipedia]
-                    </textarea>
-                </td>
-            </tr>
-        </table>
-    </p>
-    <p>
-        <h3>
-            Step 2.
-        </h3>
-        MIX the source texts with a
-        <a href="https://en.wikipedia.org/wiki/Markov_process">
-            Markov process
-        </a>
-        to produce a new text.
-    </p>
-    <p>
-        <center>
-            Number of words in mix:
-            <select id="num-words">
-                <option value="500">
-                    500
-                </option>
-                <option value="1000">
-                    1000
-                </option>
-                <option value="2000">
-                    2000
-                </option>
-            </select>
-            <button id="make-mix">
-                Mix!
-            </button>
-        </center>
-    </p>
-    <p>
-        <textarea maxlength="1000000" id="mix">
-        </textarea>
-    </p>
-    <p>
-        <h3>
-            Step 3.
-        </h3>
-        WRITE a poem satisfying Rule M: each word of the poem is (a) a word with the same 
-        <a href="https://en.wikipedia.org/wiki/Word_stem">
-            stem
-        </a>
-        as a word in the mix or (b) a
-        <a href="misc/stop_words.txt">
-            stop word
-        </a>
-        . As an example of part (a), you can use 'required' if 'requiring' is in the mix.
-    </p>
-    <p>
-        <textarea maxlength="1000000" id="poem">
-            This is not a poem
-        </textarea>
-    </p>
-    <p>
-        <h3>
-            Step 4.
-        </h3>
-        CHECK whether your poem satisfies Rule M.
-    </p>
-    <p>
-        <center>
-            <button id="validate">
-                Check!
-            </button>
-        </center>
-    </p>
-    <div id="validation-report">
-    </div>
+    <ol>
+        <li>
+            <h3>
+                Pick
+            </h3>
+            one to three source texts and paste them into the boxes below.
+            <table>
+                <tr>
+                    <td>
+                        <textarea maxlength="1000000" id="source1" class="source">
+                            In probability theory and statistics, a Markov process or Markoff process, named after the Russian mathematician Andrey Markov, is a stochastic process that satisfies the Markov property. A Markov process can be thought of as 'memoryless': loosely speaking, a process satisfies the Markov property if one can make predictions for the future of the process based solely on its present state just as well as one could knowing the process's full history. I.e., conditional on the present state of the system, its future and past are independent [Quoted from Wikipedia]
+                        </textarea>
+                    </td>
+                    <td>
+                        <textarea maxlength="1000000" id="source2" class="source">
+                            A game is structured playing, usually undertaken for enjoyment and sometimes used as an educational tool. Games are distinct from work, which is usually carried out for remuneration, and from art, which is more often an expression of aesthetic or ideological elements. However, the distinction is not clear-cut, and many games are also considered to be work (such as professional players of spectator sports/games) or art (such as jigsaw puzzles or games involving an artistic layout such as Mahjong, solitaire, or some video games). Key components of games are goals, rules, challenge, and interaction. Games generally involve mental or physical stimulation, and often both. Many games help develop practical skills, serve as a form of exercise, or otherwise perform an educational, simulational, or psychological role. Attested as early as 2600 BC, games are a universal part of human experience and present in all cultures. The Royal Game of Ur, Senet, and Mancala are some of the oldest known games. [Quoted from Wikipedia]
+                        </textarea>
+                    </td>
+                    <td>
+                        <textarea maxlength="1000000" id="source3" class="source">
+                            Poetry is a form of literature that uses aesthetic and rhythmic qualities of language—such as phonaesthetics, sound symbolism, and metre—to evoke meanings in addition to, or in place of, the prosaic ostensible meaning. Poetry has a long history, dating back to the Sumerian Epic of Gilgamesh. Early poems evolved from folk songs such as the Chinese Shijing, or from a need to retell oral epics, as with the Sanskrit Vedas, Zoroastrian Gathas, and the Homeric epics, the Iliad and the Odyssey. Ancient attempts to define poetry, such as Aristotle's Poetics, focused on the uses of speech in rhetoric, drama, song and comedy. Later attempts concentrated on features such as repetition, verse form and rhyme, and emphasized the aesthetics which distinguish poetry from more objectively informative, prosaic forms of writing. From the mid-20th century, poetry has sometimes been more generally regarded as a fundamental creative act employing language. Poetry uses forms and conventions to suggest differential interpretation to words, or to evoke emotive responses. Devices such as assonance, alliteration, onomatopoeia and rhythm are sometimes used to achieve musical or incantatory effects. The use of ambiguity, symbolism, irony and other stylistic elements of poetic diction often leaves a poem open to multiple interpretations. Similarly figures of speech such as metaphor, simile and metonymy create a resonance between otherwise disparate images—a layering of meanings, forming connections previously not perceived. Kindred forms of resonance may exist, between individual verses, in their patterns of rhyme or rhythm. Some poetry types are specific to particular cultures and genres and respond to characteristics of the language in which the poet writes. Readers accustomed to identifying poetry with Dante, Goethe, Mickiewicz and Rumi may think of it as written in lines based on rhyme and regular meter; there are, however, traditions, such as Biblical poetry, that use other means to create rhythm and euphony. Much modern poetry reflects a critique of poetic tradition, playing with and testing, among other things, the principle of euphony itself, sometimes altogether forgoing rhyme or set rhythm. In today's increasingly globalized world, poets often adapt forms, styles and techniques from diverse cultures and languages [Quoted from Wikipedia]
+                        </textarea>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        <li>
+            <h3>
+                Mix
+            </h3>
+            the source texts with a
+            <abbr title="A random process that changes states according to a transition rule that only depends on the current state. This game's Markov process takes equal parts of the source texts, concatenates the parts into one text T, chooses an initial block of two words from T, chooses another word randomly from all possible words in T that follow the previous two words chosen, chooses another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced.">
+                Markov process
+            </abbr>
+            to produce a new text.
+            <center>
+                Number of words in mix:
+                <select id="num-words">
+                    <option value="500">
+                        500
+                    </option>
+                    <option value="1000">
+                        1000
+                    </option>
+                    <option value="2000">
+                        2000
+                    </option>
+                </select>
+                <button id="make-mix">
+                    Mix!
+                </button>
+            </center>
+            <textarea maxlength="1000000" id="mix">
+            </textarea>
+        </li>
+        <li>
+            <h3>
+                Write
+            </h3>
+            a poem satisfying Rule M: each word of the poem is (a) a word with the same 
+            <abbr title="The root form of a word. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'.">
+                stem
+            </abbr>
+            as a word in the mix or (b) a
+            <abbr id="stop-words">
+                stop word
+            </abbr>
+            . As an example of part (a), you can use 'required' if 'requiring' is in the mix.
+            <textarea maxlength="1000000" id="poem">
+                This is not a poem
+            </textarea>
+        </li>
+        <li>
+            <h3>
+                Check
+            </h3>
+            whether your poem satisfies Rule M.
+            <center>
+                <button id="validate">
+                    Check!
+                </button>
+            </center>
+            <br />
+            <div id="validation-report">
+            </div>
+        </li>
+    </ol>
     <script src='lib/jquery-2.1.1/jquery.min.js'>
     </script>
     <script src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js'>

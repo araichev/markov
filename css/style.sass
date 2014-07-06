@@ -27,6 +27,17 @@ body
 h1, h2, h3, h4, h5, h6
     font-weight: 500
     color: inherit
+h2
+    &:before
+        content: ">"
+        color: $gray - 20
+        font-size: 30px
+        font-weight: bold
+        position: absolute
+        margin-left: -1em
+        margin-top: -5px
+        padding-right: 0em
+
 h3
     font-size: 120%
     font-weight: bold
@@ -38,6 +49,8 @@ header
         display: inline
         margin-left: -5px
     h2
+        &:before
+            content: none
         font-size: 25px
         display: inline
         font-style: italic
@@ -71,15 +84,6 @@ ol
     padding-left: 0
     li
         margin-left: 0
-        / &:before
-        /     content: ">"
-        /     color: $gray - 20
-        /     font-size: 30px
-        /     font-weight: bold
-        /     position: absolute
-        /     margin-left: -1.7em
-        /     margin-top: -7px
-        /     padding-right: 0em
 p 
     margin: 0 0 1em 0
 table

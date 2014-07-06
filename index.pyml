@@ -51,7 +51,7 @@ body():
             h3:
                 "Write"
             "a poem satisfying Rule M: each word of the poem is (a) a word with the same "
-            abbr(title="The root form of a word. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'."):    
+            abbr(title="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'."):    
                 "stem" 
             "as a word in the mix or (b) a"
             abbr(id="stop-words"):
@@ -69,6 +69,23 @@ body():
                     "Check!"
             br()
             div(id="validation-report")
+
+    h2:
+        "About"
+    p:
+        "This website was inspired by a textbook exercise i read a few years ago:"
+        a(href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149"):
+            "Think Python Exercise 13.8." 
+        "Based on it, i tried to make a computer program to write poetry. Part way through the undertaking, i realized that it would be much more satisfying all around to make a game for humans to write poetry instead. Thus was born Markov: A Game of Poems. Enjoy!"
+    # p:
+    #     "I would like to write a short book featuring the poems made by playing this game. Would you like to contribute a poem or three?  OK, i'll make a way to print the form above which you can then email me.  Stay tuned."
+    p:
+        "By the way, poetry by game or constraint is not my invention. It has a rich history, which you can read about in"
+        a(href="https://en.wikipedia.org/wiki/Constrained_writing"):
+            "the Wikipedia article on constrained writing."
+        "Even more interesting, Andrey Markov invented his eponymous process  through analyzing poetry, as described in"
+        a(href="misc/markov_chain.pdf"):
+            "this American Scientist article."
 
     script(src='lib/jquery-2.1.1/jquery.min.js')
     script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')

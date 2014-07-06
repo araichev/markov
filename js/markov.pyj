@@ -194,7 +194,7 @@ $('#make-mix').click(def():
 $('#validate').click(def():
     invalid_words = validate()
     if len(invalid_words) > 0:
-        report = '<p>The following words in your poem ' +\
+        report = '<p>Uh oh, the following words in your poem ' +\
         'appear to violate Rule M(a):</p>' +\
         '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
     else:

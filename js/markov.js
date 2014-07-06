@@ -559,7 +559,7 @@
         var invalid_words, report;
         invalid_words = validate();
         if (len(invalid_words) > 0) {
-            report = "<p>The following words in your poem " + "appear to violate Rule M(a):</p>" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+            report = "<p>Uh oh, the following words in your poem " + "appear to violate Rule M(a):</p>" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
         } else {
             report = "<p>Success!</p>";
         }

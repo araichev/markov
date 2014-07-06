@@ -58,8 +58,7 @@ body():
                 "stop word"
             ". As an example of part (a), you can use 'required' if 'requiring' is in the mix." 
     
-            textarea(maxlength="1000000" id="poem"):
-                "This is not a poem"
+            textarea(maxlength="1000000" id="poem")
         li:
             h3:
                 "Check"
@@ -80,10 +79,10 @@ body():
     # p:
     #     "I would like to write a short book featuring the poems made by playing this game. Would you like to contribute a poem or three?  OK, i'll make a way to print the form above which you can then email me.  Stay tuned."
     p:
-        "By the way, poetry by game or constraint is not my invention. It has a rich history, which you can read about in"
+        "By the way, poetry by game or constraint has a rich history, which you can read about in"
         a(href="https://en.wikipedia.org/wiki/Constrained_writing"):
             "the Wikipedia article on constrained writing."
-        "Even more interesting, Andrey Markov invented his eponymous process  through analyzing poetry, as described in"
+        "Interestingly, Andrey Markov invented his eponymous process through analyzing poetry, as described in"
         a(href="misc/markov_chain.pdf"):
             "this American Scientist article."
 

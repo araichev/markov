@@ -565,7 +565,7 @@
         }
         dump_validation(report);
         $("html, body").animate({
-            scrollTop: $("#validate").offset().top
-        }, 2e3);
+            "scrollTop": $("#validate").offset().top
+        }, 500);
     });
 })();

@@ -202,6 +202,6 @@ $('#validate').click(def():
     dump_validation(report)
     # Scroll to validation report
     $('html, body').animate({
-            scrollTop: $("#validate").offset().top
-        }, 2000);
+        'scrollTop': $("#validate").offset().top
+        }, 500)
 )

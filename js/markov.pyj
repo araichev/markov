@@ -18,7 +18,7 @@ def normalize(string):
     and return the resulting text string.
     """
     return string.replace(
-      RegExp('[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), 
+      RegExp('[\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), 
       '').toLowerCase()
 
 def load_word_lists():
@@ -194,8 +194,8 @@ $('#make-mix').click(def():
 $('#validate').click(def():
     invalid_words = validate()
     if len(invalid_words) > 0:
-        report = '<p>Uh oh, the following words in your poem ' +\
-        'appear to violate Rule M(a):</p>' +\
+        report = 'Uh oh, the following words in your poem ' +\
+        'appear to violate Rule M(a):' +\
         '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
     else:
         report = '<p>Success!</p>'

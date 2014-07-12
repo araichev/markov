@@ -353,7 +353,7 @@
     });
     function normalize(string) {
         "\n    Remove the punctuation from the given text string, lowercase all words,\n    and return the resulting text string.\n    ";
-        return string.replace(new RegExp("[\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), "").toLowerCase();
+        return string.replace(new RegExp("[\\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), "").toLowerCase();
     }
     function load_word_lists() {
         var texts, word_lists, word_list, text;
@@ -559,7 +559,7 @@
         var invalid_words, report;
         invalid_words = validate();
         if (len(invalid_words) > 0) {
-            report = "<p>Uh oh, the following words in your poem " + "appear to violate Rule M(a):</p>" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+            report = "Uh oh, the following words in your poem " + "appear to violate Rule M(a):" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
         } else {
             report = "<p>Success!</p>";
         }

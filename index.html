@@ -23,12 +23,34 @@
             A Game of Poems
         </h2>
     </header>
+    <div class="A">
+        Greetings.
+    </div>
+    <div class="Q">
+        Hello.  What is this?
+    </div>
+    <div class="A">
+        This is a webpage dedicated to making Markov poems.
+    </div>
+    <div class="Q">
+        What's a Markov poem?
+    </div>
+    <div class="A">
+        A Markov poem, as i call it, is a poem created by playing the game below, one step of which involves generating text via a
+        <abbr title="A random process that changes states according to a transition rule that only depends on the current state.">
+            Markov process.
+        </abbr>
+    </div>
+    <div class="Q">
+        Interesting.  How do i play?
+    </div>
+    <div class="A">
+        Follow these steps.
+    </div>
+    <hr />
     <ol>
         <li>
-            <h3>
-                Pick
-            </h3>
-            one to three source texts and paste them into the boxes below.
+            Pick one to three source texts and paste them into the boxes below.
             <table>
                 <tr>
                     <td>
@@ -50,16 +72,11 @@
             </table>
         </li>
         <li>
-            <h3>
+            <abbr title="This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced.">
                 Mix
-            </h3>
-            the source texts with a
-            <abbr title="A random process that changes states according to a transition rule that only depends on the current state. This game's Markov process takes equal parts of the source texts, concatenates the parts into one text T, chooses an initial block of two words from T, chooses another word randomly from all possible words in T that follow the previous two words chosen, chooses another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced.">
-                Markov process
             </abbr>
-            to produce a new text.
+            the source texts to produce a new text.
             <center>
-                Number of words in mix:
                 <select id="num-words">
                     <option value="500">
                         500
@@ -79,10 +96,7 @@
             </textarea>
         </li>
         <li>
-            <h3>
-                Write
-            </h3>
-            a poem satisfying Rule M: each word of the poem is (a) a word with the same 
+            Write a poem satisfying Rule M: each word of the poem is (a) a word with the same 
             <abbr title="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'.">
                 stem
             </abbr>
@@ -95,40 +109,48 @@
             </textarea>
         </li>
         <li>
-            <h3>
-                Check
-            </h3>
-            whether your poem satisfies Rule M.
+            Check whether your poem satisfies Rule M.
             <center>
                 <button id="validate">
                     Check!
                 </button>
             </center>
-            <br />
             <div id="validation-report">
             </div>
         </li>
     </ol>
-    <h2>
-        About
-    </h2>
-    <p>
-        This website was inspired by a textbook exercise i read a few years ago:
+    <hr />
+    <div class="A">
+        How did it go?
+    </div>
+    <div class="Q">
+        I enjoyed that.
+    </div>
+    <div class="A">
+        Glad to hear it.
+    </div>
+    <div class="Q">
+        Where did this game come from?
+    </div>
+    <div class="A">
+        It was inspired by a computer programming exercise i read a few years ago,
         <a href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149">
             Think Python Exercise 13.8.
         </a>
-        Based on it, i tried to make a computer program to write poetry. Part way through the undertaking, i realized that it would be much more satisfying all around to make a game for humans to write poetry instead. Thus was born Markov: A Game of Poems. Enjoy!
-    </p>
-    <p>
-        By the way, poetry by game or constraint has a rich history, which you can read about in
-        <a href="https://en.wikipedia.org/wiki/Constrained_writing">
-            the Wikipedia article on constrained writing.
-        </a>
-        Interestingly, Andrey Markov invented his eponymous process through analyzing poetry, as described in
+        Based on that exercise, i tried to make a program that writes poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov: A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, as described in
         <a href="misc/markov_chain.pdf">
             this American Scientist article.
         </a>
-    </p>
+    </div>
+    <div class="Q">
+        Hey, you should make a book of these poems.
+    </div>
+    <div class="A">
+        I think i will. Stay tuned!
+    </div>
+    <div class="Q">
+        OK. Bye!
+    </div>
     <script src='lib/jquery-2.1.1/jquery.min.js'>
     </script>
     <script src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js'>

@@ -1,7 +1,6 @@
 $highlight-color: rgb(213, 62, 79) 
 $opacity: 1.0
-$font-size: 16px 
-$medium-font-size: 14px
+$font-size: 17px 
 $small-font-size: 12px
 $background-color: white
 $border-radius: 5px
@@ -10,7 +9,7 @@ $gray: rgb(235, 235, 235)
 @mixin box
     background-color: $gray
     font-family: consolas
-    font-size: $medium-font-size
+    font-size: 0.9*$font-size
     padding: 10px
     border-radius: 5px
 @mixin font($size, $line-height)
@@ -21,39 +20,30 @@ $gray: rgb(235, 235, 235)
     color: black
 body
     @include font($font-size, 1.4)
-    margin: 20px auto
+    margin: 30px auto
     padding: 0px
-    width: 750px
+    width: 765px
 h1, h2, h3, h4, h5, h6
-    font-weight: 500
     color: inherit
-h2
-    &:before
-        content: ">"
-        color: $gray - 20
-        font-size: 30px
-        font-weight: bold
-        position: absolute
-        margin-left: -1em
-        margin-top: -5px
-        padding-right: 0em
-
+    margin-bottom: 7px
 h3
+    font-size: 140%
+h4
     font-size: 120%
-    font-weight: bold
     display: inline
 header
-    margin-bottom: 25px
+    margin-bottom: 10px
     h1
-        font-size: 70px
+        font-family: 'Georgia', serif
+        font-style: italic
+        font-size: 80px
+        font-weight: normal
         display: inline
         margin-left: -5px
     h2
-        &:before
-            content: none
-        font-size: 25px
-        display: inline
         font-style: italic
+        font-weight: normal
+        display: inline
     img
         height: 120px
         margin: 0 0 -30px -7px
@@ -75,17 +65,34 @@ a
     text-decoration: none
     &:hover, &:active
         text-decoration: underline
-body#index a#nav-index, body#examples a#nav-examples
+body#index a#nav-index, body#poems a#nav-poems
     color: inherit
     &:hover, &:active
         text-decoration: none
+div.A
+    &:before
+        content: "A: "
+        font-size: 110%
+        font-weight: bold
+        margin-top: -2px
+div.Q
+    &:before
+        content: "Q: "
+        font-size: 110%
+        font-weight: bold
+        margin-top: -2px
 ol
     margin-left: 0
     padding-left: 0
-    li
-        margin-left: 0
+    list-style-position: inside
+    li:
+        padding: 0
 p 
     margin: 0 0 1em 0
+hr
+    margin: 1em 0em
+    border-bottom: 1px solid $gray
+    border-style: none none solid none
 table
     border-collapse: collapse
     width: 750px
@@ -104,4 +111,9 @@ textarea
     &.short
         height: 50px
 center
-    margin-top: 1em
+    margin-top: 0.5em
+button#validate
+    margin: 0.5em 0em
+pre.poem
+    margin-left: -1.3em
+    font: inherit

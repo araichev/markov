@@ -15,11 +15,29 @@ body():
             img(src="misc/andrey_markov.png" title="Andrey Markov")
         h2:
             "A Game of Poems"  
+    div(class="A"):
+        "Greetings."
+    div(class="Q"):
+        "Hello.  What is this?"
+    div(class="A"):
+        "This is a webpage dedicated to making Markov poems."
+    div(class="Q"):
+        "What's a Markov poem?"
+    div(class="A"):
+        "A Markov poem, as i call it, is a poem created by playing the game below, one step of which involves generating text via a"
+        abbr(title="A random process that changes states according to a transition rule that only depends on the current state."):
+            "Markov process."  
+    div(class="Q"):
+        "Interesting.  How do i play?"
+    div(class="A"):
+        "Follow these steps."
+
+    hr()
     ol:
         li:
-            h3:
-                "Pick" 
-            "one to three source texts and paste them into the boxes below." 
+            # h4:
+            #     "Pick" 
+            "Pick one to three source texts and paste them into the boxes below." 
             table:
                 tr:
                     td:
@@ -32,25 +50,26 @@ body():
                         textarea(maxlength="1000000" id="source3" class="source"):
                             "Poetry is a form of literature that uses aesthetic and rhythmic qualities of language—such as phonaesthetics, sound symbolism, and metre—to evoke meanings in addition to, or in place of, the prosaic ostensible meaning. Poetry has a long history, dating back to the Sumerian Epic of Gilgamesh. Early poems evolved from folk songs such as the Chinese Shijing, or from a need to retell oral epics, as with the Sanskrit Vedas, Zoroastrian Gathas, and the Homeric epics, the Iliad and the Odyssey. Ancient attempts to define poetry, such as Aristotle's Poetics, focused on the uses of speech in rhetoric, drama, song and comedy. Later attempts concentrated on features such as repetition, verse form and rhyme, and emphasized the aesthetics which distinguish poetry from more objectively informative, prosaic forms of writing. From the mid-20th century, poetry has sometimes been more generally regarded as a fundamental creative act employing language. Poetry uses forms and conventions to suggest differential interpretation to words, or to evoke emotive responses. Devices such as assonance, alliteration, onomatopoeia and rhythm are sometimes used to achieve musical or incantatory effects. The use of ambiguity, symbolism, irony and other stylistic elements of poetic diction often leaves a poem open to multiple interpretations. Similarly figures of speech such as metaphor, simile and metonymy create a resonance between otherwise disparate images—a layering of meanings, forming connections previously not perceived. Kindred forms of resonance may exist, between individual verses, in their patterns of rhyme or rhythm. Some poetry types are specific to particular cultures and genres and respond to characteristics of the language in which the poet writes. Readers accustomed to identifying poetry with Dante, Goethe, Mickiewicz and Rumi may think of it as written in lines based on rhyme and regular meter; there are, however, traditions, such as Biblical poetry, that use other means to create rhythm and euphony. Much modern poetry reflects a critique of poetic tradition, playing with and testing, among other things, the principle of euphony itself, sometimes altogether forgoing rhyme or set rhythm. In today's increasingly globalized world, poets often adapt forms, styles and techniques from diverse cultures and languages [Quoted from Wikipedia]"
         li:
-            h3:
-                "Mix"
-            "the source texts with a"
-            abbr(title="A random process that changes states according to a transition rule that only depends on the current state. This game's Markov process takes equal parts of the source texts, concatenates the parts into one text T, chooses an initial block of two words from T, chooses another word randomly from all possible words in T that follow the previous two words chosen, chooses another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced."):
-                "Markov process" 
-            "to produce a new text." 
+            # h4:
+            #     "Mix"
+            abbr(title="This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced."):
+                "Mix" 
+            "the source texts to produce a new text." 
             center:
-                "Number of words in mix:"
                 select(id="num-words"):
-                    for $k in [500, 1000, 2000]:
-                        option(value="$k"):
-                            "$k"
+                    option(value="500"):
+                        "500"
+                    option(value="1000"):
+                        "1000"
+                    option(value="2000"):
+                        "2000"
                 button(id="make-mix"):
                     "Mix!"
             textarea(maxlength="1000000" id="mix")
         li:
-            h3:
-                "Write"
-            "a poem satisfying Rule M: each word of the poem is (a) a word with the same "
+            # h4:
+            #     "Write"
+            "Write a poem satisfying Rule M: each word of the poem is (a) a word with the same "
             abbr(title="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'."):    
                 "stem" 
             "as a word in the mix or (b) a"
@@ -60,33 +79,41 @@ body():
     
             textarea(maxlength="1000000" id="poem")
         li:
-            h3:
-                "Check"
-            "whether your poem satisfies Rule M."
+            # h4:
+            #     "Check"
+            "Check whether your poem satisfies Rule M."
             center:
                 button(id="validate"):
                     "Check!"
-            br()
             div(id="validation-report")
+    hr()
 
-    h2:
-        "About"
-    p:
-        "This website was inspired by a textbook exercise i read a few years ago:"
+    div(class="A"):
+        "How did it go?"
+    div(class="Q"):
+        "I enjoyed that."
+    div(class="A"):
+        "Glad to hear it."
+    div(class="Q"):
+        "Where did this game come from?"
+    div(class="A"):
+        "It was inspired by a computer programming exercise i read a few years ago," 
         a(href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149"):
             "Think Python Exercise 13.8." 
-        "Based on it, i tried to make a computer program to write poetry. Part way through the undertaking, i realized that it would be much more satisfying all around to make a game for humans to write poetry instead. Thus was born Markov: A Game of Poems. Enjoy!"
-    # p:
-    #     "I would like to write a short book featuring the poems made by playing this game. Would you like to contribute a poem or three?  OK, i'll make a way to print the form above which you can then email me.  Stay tuned."
-    p:
-        "By the way, poetry by game or constraint has a rich history, which you can read about in"
-        a(href="https://en.wikipedia.org/wiki/Constrained_writing"):
-            "the Wikipedia article on constrained writing."
-        "Interestingly, Andrey Markov invented his eponymous process through analyzing poetry, as described in"
+        "Based on that exercise, i tried to make a program that writes poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov: A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, as described in"
         a(href="misc/markov_chain.pdf"):
             "this American Scientist article."
-
+    div(class="Q"):
+        "Hey, you should make a book of these poems."
+    div(class="A"):
+        "I think i will. Stay tuned!" 
+    div(class="Q"):
+        "OK. Bye!"
+        
+    
     script(src='lib/jquery-2.1.1/jquery.min.js')
     script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
     script(src='lib/porter_stemmer.min.js')
     script(src='js/markov.js')
+
+#page('index')

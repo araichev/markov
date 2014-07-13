@@ -107,8 +107,6 @@ body():
         "Hey, you should make a book of these poems."
     div(class="A"):
         "I think i will. Stay tuned!" 
-    div(class="Q"):
-        "OK. Bye!"
         
     
     script(src='lib/jquery-2.1.1/jquery.min.js')

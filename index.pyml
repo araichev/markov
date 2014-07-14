@@ -32,7 +32,8 @@ body():
     div(class="A"):
         "Follow these steps."
 
-    hr()
+    center:
+        "* * *"
     ol:
         li:
             # h4:
@@ -86,7 +87,8 @@ body():
                 button(id="validate"):
                     "Check!"
             div(id="validation-report")
-    hr()
+    center:
+        "* * *"
 
     div(class="A"):
         "How did it go?"

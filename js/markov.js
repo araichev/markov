@@ -352,8 +352,8 @@
         $("#stop-words").prop("title", STOP_WORDS.join(", "));
     });
     function normalize(string) {
-        "\n    Remove the punctuation from the given text string, lowercase all words,\n    and return the resulting text string.\n    ";
-        return string.replace(new RegExp("[\\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), "").toLowerCase();
+        "\n    Replace the punctuation from the given text string with blanks,\n    lowercase all words, and return the resulting text string.\n    ";
+        return string.replace(new RegExp("[\\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), " ").toLowerCase();
     }
     function load_word_lists() {
         var texts, word_lists, word_list, text;

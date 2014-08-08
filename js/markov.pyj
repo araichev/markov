@@ -14,12 +14,12 @@ $.get('misc/stop_words.txt', def(data):
 
 def normalize(string):
     """
-    Remove the punctuation from the given text string, lowercase all words,
-    and return the resulting text string.
+    Replace the punctuation from the given text string with blanks,
+    lowercase all words, and return the resulting text string.
     """
     return string.replace(
       RegExp('[\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), 
-      '').toLowerCase()
+      ' ').toLowerCase()
 
 def load_word_lists():
     """

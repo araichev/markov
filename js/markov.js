@@ -537,7 +537,6 @@
             $("#mix").effect("shake", {
                 "times": 1
             }, 800);
-            _$rapyd$_print("Hello!");
             word_lists = load_word_lists();
             portions = (function() {
                 var _$rapyd$_Iter = len(word_lists), _$rapyd$_Result = [], i;

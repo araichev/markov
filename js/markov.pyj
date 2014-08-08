@@ -180,7 +180,6 @@ $('#make-mix').click(def():
     $("#source3" ).effect("shake", {'times':3}, 1200)
     setTimeout(def():
         $("#mix" ).effect("shake", {'times':1}, 800)
-        print('Hello!')
         word_lists = load_word_lists()
         portions = [1 for i in len(word_lists)]
         words = get_words(word_lists, portions)

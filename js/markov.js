@@ -352,18 +352,18 @@
         $("#stop-words").prop("title", STOP_WORDS.join(", "));
     });
     function normalize(string) {
-        "\n    Replace the punctuation from the given text string with blanks,\n    lowercase all words, and return the resulting text string.\n    ";
-        return string.replace(new RegExp("[\\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]", "g"), " ").toLowerCase();
+        "\n    Replace the punctuation from the given text string with blanks,\n    lowercase all words, remove leading and trailing whitespace, \n    and return the resulting text string.\n    ";
+        return string.replace(new RegExp("[\\\"\\|\\.,\\/#!$%\\^&\\*;:{}=_`(---)(--)~\\(\\)@\\+\\?><\\[\\]\\+]", "g"), " ").toLowerCase().trim();
     }
-    function load_word_lists() {
+    function load_source_texts() {
         var texts, word_lists, word_list, text;
-        "\n    Return a list of at most three lists of words.\n    Each word list is obtained by normalizing and splitting the texts from\n    the three source text boxes on the webpage.\n    ";
+        "\n    Get the source texts from the source text boxes on the webpage,\n    apply ``normalize()`` to each text, split each text on its whitespace, \n    and return the resulting word lists.\n    ";
         texts = [ $("#source1").val(), $("#source2").val(), $("#source3").val() ];
         word_lists = [];
         var _$rapyd$_Iter6 = texts;
         for (var _$rapyd$_Index6 = 0; _$rapyd$_Index6 < _$rapyd$_Iter6.length; _$rapyd$_Index6++) {
             text = _$rapyd$_Iter6[_$rapyd$_Index6];
-            word_list = normalize(text.trim()).split(new RegExp("\\s+"));
+            word_list = normalize(text).split(new RegExp("\\s+"));
             if (len(word_list) > PREFIX_LENGTH) {
                 word_lists.append(word_list);
             }
@@ -373,7 +373,7 @@
     function load_num_words() {
         return parseInt($("#num-words").val());
     }
-    function get_words(word_lists, portions) {
+    function get_merged_text(word_lists, portions) {
         var P, m, counts, result, wl;
         "\n    Truncate the given word lists according to the given portions,\n    concatenate the truncations into one word list, and return the result.\n    ";
         P = sum(portions);
@@ -453,7 +453,7 @@
         return a[i];
     }
     function get_mix(words, num_words, prefix_length) {
-        if (typeof prefix_length === "undefined") prefix_length = 2;
+        if (typeof prefix_length === "undefined") prefix_length = PREFIX_LENGTH;
         var d, prefixes, result, prefix, s, suffix, i;
         "\n    Return a list of ``num_words`` random words from \n    the given list of words. \n    Do this by shuffling ``d = get_markov_analysis(words, prefix_length)``,\n    and traversing ``d`` until ``num_words`` random words have been \n    generated.\n    ";
         d = get_markov_analysis(words, prefix_length);
@@ -463,7 +463,7 @@
         prefixes = shuffle(dict.keys(d));
         result = unpack(prefixes[0]);
         i = 0;
-        while (i < num_words) {
+        while (i < num_words - prefix_length) {
             prefix = pack(result.slice(i, i + prefix_length));
             while (!(_$rapyd$_in(prefix, d))) {
                 prefix = choose(prefixes);
@@ -486,7 +486,7 @@
     }
     function validate() {
         var mix, mix_words, mix_stems, poem_words, invalid_words, word;
-        mix = normalize(load_mix().trim()).split(new RegExp("\\s+"));
+        mix = normalize(load_mix()).split(new RegExp("\\s+"));
         mix_words = (function() {
             var _$rapyd$_Iter = mix, _$rapyd$_Result = [], word;
             for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
@@ -505,7 +505,7 @@
             }
             return _$rapyd$_Result;
         })();
-        poem_words = normalize(load_poem().trim()).split(new RegExp("\\s+"));
+        poem_words = normalize(load_poem()).split(new RegExp("\\s+"));
         invalid_words = [];
         var _$rapyd$_Iter8 = poem_words;
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
@@ -533,24 +533,29 @@
             "times": 3
         }, 1200);
         setTimeout(function() {
-            var word_lists, portions, words, num_words, mix;
+            var source_texts, st, portions, merged_text, num_words, mix;
             $("#mix").effect("shake", {
                 "times": 1
             }, 800);
-            word_lists = load_word_lists();
+            source_texts = load_source_texts();
+            var _$rapyd$_Iter9 = source_texts;
+            for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
+                st = _$rapyd$_Iter9[_$rapyd$_Index9];
+                _$rapyd$_print(st);
+            }
             portions = (function() {
-                var _$rapyd$_Iter = len(word_lists), _$rapyd$_Result = [], i;
+                var _$rapyd$_Iter = len(source_texts), _$rapyd$_Result = [], i;
                 for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
                     i = _$rapyd$_Iter[_$rapyd$_Index];
                     _$rapyd$_Result.push(1);
                 }
                 return _$rapyd$_Result;
             })();
-            words = get_words(word_lists, portions);
-            _$rapyd$_print("source num words", len(words));
+            merged_text = get_merged_text(source_texts, portions);
+            _$rapyd$_print("num words in source", len(merged_text));
             num_words = load_num_words();
-            _$rapyd$_print("mix num words", num_words);
-            mix = get_mix(words, num_words);
+            mix = get_mix(merged_text, num_words);
+            _$rapyd$_print("num words in mix", len(mix));
             dump_mix(mix.join(" "));
         }, 1e3);
     });

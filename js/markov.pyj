@@ -15,17 +15,18 @@ $.get('misc/stop_words.txt', def(data):
 def normalize(string):
     """
     Replace the punctuation from the given text string with blanks,
-    lowercase all words, and return the resulting text string.
+    lowercase all words, remove leading and trailing whitespace, 
+    and return the resulting text string.
     """
     return string.replace(
-      RegExp('[\\"\\|\\.,-\\/#!$%\\^&\\*;:{}=\\-_`~()@\\+\\?><\\[\\]\\+]', 'g'), 
-      ' ').toLowerCase()
+      RegExp('[\\"\\|\\.,\\/#!$%\\^&\\*;:{}=_`(---)(--)~\\(\\)@\\+\\?><\\[\\]\\+]', 'g'), 
+      ' ').toLowerCase().trim()
 
-def load_word_lists():
+def load_source_texts():
     """
-    Return a list of at most three lists of words.
-    Each word list is obtained by normalizing and splitting the texts from
-    the three source text boxes on the webpage.
+    Get the source texts from the source text boxes on the webpage,
+    apply ``normalize()`` to each text, split each text on its whitespace, 
+    and return the resulting word lists.
     """
     texts = [
       $('#source1').val(), 
@@ -33,7 +34,7 @@ def load_word_lists():
       $('#source3').val()]
     word_lists = []
     for text in texts:
-        word_list = normalize(text.trim()).split(RegExp('\\s+'))
+        word_list = normalize(text).split(RegExp('\\s+'))
         # word_list = re.split('\\s+', text) # requires ``import re``
         if len(word_list) > PREFIX_LENGTH:
             word_lists.append(word_list)
@@ -42,7 +43,7 @@ def load_word_lists():
 def load_num_words():
     return int($('#num-words').val())
 
-def get_words(word_lists, portions):
+def get_merged_text(word_lists, portions):
     """
     Truncate the given word lists according to the given portions,
     concatenate the truncations into one word list, and return the result.
@@ -113,7 +114,7 @@ def choose(a):
     i = Math.floor(Math.random()*len(a))
     return a[i]
 
-def get_mix(words, num_words, prefix_length=2):
+def get_mix(words, num_words, prefix_length=PREFIX_LENGTH):
     """
     Return a list of ``num_words`` random words from 
     the given list of words. 
@@ -134,7 +135,7 @@ def get_mix(words, num_words, prefix_length=2):
     # Build num_words of random text or
     # or as many words as possible
     i = 0   
-    while i < num_words:
+    while i < num_words - prefix_length:
         # Get next prefix
         prefix = pack(result[i:i + prefix_length])
         # Choose a random suffix from d[pack(prefix)]
@@ -159,10 +160,10 @@ def load_poem():
     return $('#poem').val()
 
 def validate():
-    mix = normalize(load_mix().trim()).split(RegExp('\\s+'))
+    mix = normalize(load_mix()).split(RegExp('\\s+'))
     mix_words = [word for word in mix if word not in STOP_WORDS]
     mix_stems = [stemmer(word) for word in mix_words]
-    poem_words = normalize(load_poem().trim()).split(RegExp('\\s+'))
+    poem_words = normalize(load_poem()).split(RegExp('\\s+'))
     invalid_words = []
     for word in poem_words:
         if word in STOP_WORDS:
@@ -180,13 +181,15 @@ $('#make-mix').click(def():
     $("#source3" ).effect("shake", {'times':3}, 1200)
     setTimeout(def():
         $("#mix" ).effect("shake", {'times':1}, 800)
-        word_lists = load_word_lists()
-        portions = [1 for i in len(word_lists)]
-        words = get_words(word_lists, portions)
-        print('source num words', len(words))
+        source_texts = load_source_texts()
+        for st in source_texts:
+            print(st)
+        portions = [1 for i in len(source_texts)]
+        merged_text = get_merged_text(source_texts, portions)
+        print('num words in source', len(merged_text))
         num_words = load_num_words()
-        print('mix num words', num_words)
-        mix = get_mix(words, num_words)
+        mix = get_mix(merged_text, num_words)
+        print('num words in mix', len(mix))
         dump_mix(mix.join(' '))
     ,1000)
 )        

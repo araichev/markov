@@ -34,7 +34,7 @@ body {
               display: inline; }
               header img {
                 height: 120px;
-                margin: 0 0 -30px -7px;
+                margin: -40px 0 0px -7px;
                 /border: 1px solid red; }
                 header a {
                   text-decoration: none; }
@@ -122,4 +122,5 @@ pre.poem {
   font: inherit; }
 
   .popover {
-    font-size: 80%; }
+    font-size: 80%;
+    border-radius: 1px; }

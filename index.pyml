@@ -35,6 +35,8 @@ body():
 
     center:
         "* * *"
+    abbr(title="hello hello hello hello"):
+        "Hello"
     ol:
         li:
             # h4:
@@ -110,8 +112,8 @@ body():
         "I might want to give you some feedback on this site later. How can i contact you?"
     div(class="A"):
         "You can email me at"
-        a(href="mailto:alex@markov-poems.net?subject=Markov poems feedback"):
-            "alex@markov-poems.net." 
+        a(href="mailto:alex@markovpoems.net?subject=Markov poems feedback"):
+            "alex@markovpoems.net." 
         
     
     script(src='lib/jquery-2.1.1/jquery.min.js')

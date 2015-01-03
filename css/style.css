@@ -55,6 +55,8 @@ a {
   a:hover, a:active {
     text-decoration: underline;
     color: royalblue; }
+    a:visited {
+      color: royalblue; }
 
 body#index a#nav-index, body#poems a#nav-poems {
   color: inherit; }

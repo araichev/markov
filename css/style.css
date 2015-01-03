@@ -24,7 +24,7 @@ body {
           header h1 {
             font-family: 'Georgia', serif;
             font-style: italic;
-            font-size: 80px;
+            font-size: 85px;
             font-weight: normal;
             display: inline;
             margin-left: -5px; }
@@ -99,7 +99,7 @@ textarea {
   font-family: consolas;
   font-size: 15.3px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 1px;
   border: none;
   resize: none;
   width: 745px;
@@ -116,6 +116,9 @@ center {
   button#validate {
     margin: 0.5em 0em; }
 
-    pre.poem {
-      margin-left: -1.3em;
-      font: inherit; }
+pre.poem {
+  margin-left: -1.3em;
+  font: inherit; }
+
+  .popover {
+    font-size: 80%; }

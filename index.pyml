@@ -5,6 +5,7 @@ html:
             "Markov: A Game of Poems"
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        link(rel="stylesheet", href="lib/bootstrap-3.2.0/css/bootstrap.min.css")
         link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
         link(rel='stylesheet' href='css/style.css')
 body():
@@ -18,14 +19,14 @@ body():
     div(class="A"):
         "Greetings."
     div(class="Q"):
-        "Hello.  What is this?"
+        "Hello, what is this?"
     div(class="A"):
         "This is a webpage dedicated to making Markov poems."
     div(class="Q"):
-        "What's a Markov poem?"
+        "What is a Markov poem?"
     div(class="A"):
         "A Markov poem, as i call it, is a poem created by playing the game below, one step of which involves generating text via a"
-        abbr(title="A random process that changes states according to a transition rule that only depends on the current state."):
+        abbr(data-toggle="popover", data-trigger="focus", tabindex="0", data-content="A random process that changes states according to a transition rule that only depends on the current state."):
             "Markov process."  
     div(class="Q"):
         "Interesting.  How do i play?"
@@ -53,7 +54,7 @@ body():
         li:
             # h4:
             #     "Mix"
-            abbr(title="This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced."):
+            abbr(data-toggle="popover", data-trigger="focus", tabindex="0", data-content="This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced."):
                 "Mix" 
             "the source texts to produce a new text." 
             center:
@@ -71,10 +72,10 @@ body():
             # h4:
             #     "Write"
             "Write a poem satisfying Rule M: each word of the poem is (a) a word with the same "
-            abbr(title="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'."):    
+            abbr(data-toggle="popover", data-trigger="focus", tabindex="0", data-content="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'."):    
                 "stem" 
             "as a word in the mix or (b) a"
-            abbr(id="stop-words"):
+            abbr(id="stop-words", data-toggle="popover", data-trigger="focus", tabindex="0"):
                 "stop word"
             ". As an example of part (a), you can use 'required' if 'requiring' is in the mix." 
     
@@ -102,18 +103,21 @@ body():
         "It was inspired by a computer programming exercise i read a few years ago," 
         a(href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149"):
             "Think Python Exercise 13.8." 
-        "Based on that exercise, i tried to make a program that writes poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov: A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, as described in"
+        "Based on that exercise, i tried to make a program that writes poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov, A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, of all things; see"
         a(href="misc/markov_chain.pdf"):
             "this American Scientist article."
     div(class="Q"):
-        "Hey, you should make a book of these poems."
+        "I might want to give you some feedback on this site later. How can i contact you?"
     div(class="A"):
-        "I think i will. Stay tuned!" 
+        "You can email me at"
+        a(href="mailto:alex@markov-poems.net?subject=Markov poems feedback"):
+            "alex@markov-poems.net." 
         
     
     script(src='lib/jquery-2.1.1/jquery.min.js')
     script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
     script(src='lib/porter_stemmer.min.js')
+    script(src='lib/bootstrap-3.2.0/js/bootstrap.min.js')
     script(src='js/markov.js')
 
 #page('index')

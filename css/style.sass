@@ -3,7 +3,7 @@ $opacity: 1.0
 $font-size: 17px 
 $small-font-size: 12px
 $background-color: white
-$border-radius: 5px
+$border-radius: 1px
 $gray: rgb(235, 235, 235)
 
 @mixin box
@@ -11,7 +11,7 @@ $gray: rgb(235, 235, 235)
     font-family: consolas
     font-size: 0.9*$font-size
     padding: 10px
-    border-radius: 5px
+    border-radius: $border-radius
 @mixin font($size, $line-height)
     font-family: "open_sansregular", Helvetica, sans-serif 
     / font-family: 'Georgia', serif
@@ -36,7 +36,7 @@ header
     h1
         font-family: 'Georgia', serif
         font-style: italic
-        font-size: 80px
+        font-size: 85px
         font-weight: normal
         display: inline
         margin-left: -5px
@@ -112,8 +112,11 @@ textarea
         height: 50px
 center
     margin-top: 0.5em
-button#validate
-    margin: 0.5em 0em
+button
+    &#validate
+        margin: 0.5em 0em
 pre.poem
     margin-left: -1.3em
     font: inherit
+.popover
+    font-size: 80%  

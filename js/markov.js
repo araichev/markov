@@ -349,7 +349,7 @@
     STOP_WORDS = null;
     $.get("misc/stop_words.txt", function(data) {
         STOP_WORDS = data.trim().split(new RegExp("\\s+"));
-        $("#stop-words").prop("title", STOP_WORDS.join(", "));
+        $("#stop-words").attr("data-content", STOP_WORDS.join(", "));
     });
     function normalize(string) {
         "\n    Replace the punctuation from the given text string with blanks,\n    lowercase all words, remove leading and trailing whitespace, \n    and return the resulting text string.\n    ";
@@ -571,5 +571,8 @@
         $("html, body").animate({
             "scrollTop": $("#validate").offset().top
         }, 500);
+    });
+    $(function() {
+        $("[data-toggle=\"popover\"]").popover();
     });
 })();

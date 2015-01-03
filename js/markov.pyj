@@ -9,8 +9,9 @@ $.get('misc/stop_words.txt', def(data):
     nonlocal STOP_WORDS
     STOP_WORDS = data.trim().split(RegExp('\\s+'))
     # Set them as the title text of the '#stop-words' element
-    $('#stop-words').prop('title', STOP_WORDS.join(', '))
+    $('#stop-words').attr('data-content', STOP_WORDS.join(', '))
 )
+
 
 def normalize(string):
     """
@@ -207,3 +208,8 @@ $('#validate').click(def():
         'scrollTop': $("#validate").offset().top
         }, 500)
 )
+
+# Enable Bootstrap popovers
+$(def(): 
+    $('[data-toggle="popover"]').popover()
+)    

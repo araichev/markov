@@ -53,7 +53,8 @@ a {
   color: royalblue;
   text-decoration: none; }
   a:hover, a:active {
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: royalblue; }
 
 body#index a#nav-index, body#poems a#nav-poems {
   color: inherit; }

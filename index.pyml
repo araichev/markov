@@ -35,8 +35,6 @@ body():
 
     center:
         "* * *"
-    abbr(title="hello hello hello hello"):
-        "Hello"
     ol:
         li:
             # h4:

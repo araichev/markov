@@ -9,7 +9,7 @@ def page_content():
             "email them to me."  
         "I like including the mixes, because they offer a glimpse into the poet's creative process."
     p:
-        "To avoid legal hassles, please use source texts that you have permission to remix, such as those in the public domain. Your Markov poem will be licensed on this page as"
+        "Play it safe and use source texts that you have permission to remix, such as those in the public domain. Your Markov poem will be licensed on this page as"
         a(href="http://creativecommons.org/licenses/by-sa/3.0/nz/"):
             "Creative Commons Attribution-ShareAlike"
         "unless you specify an alternative license."   

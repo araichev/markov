@@ -8,44 +8,32 @@ body {
   padding: 0px;
   width: 765px; }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: inherit;
-    margin-bottom: 7px; }
-
-    h3 {
-      font-size: 140%; }
-
-      h4 {
-        font-size: 120%;
+  header {
+    margin-bottom: 2em; }
+    header h1 {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: 85px;
+      font-weight: normal;
+      display: inline; }
+      header h2 {
+        font-family: 'Georgia', serif;
+        font-style: italic;
+        font-size: 25px;
         display: inline; }
+        header img {
+          height: 120px;
+          margin: -40px 2px 0 -7px; }
+          header a {
+            text-decoration: none; }
+            header a:hover, header a:active {
+              text-decoration: none; }
 
-        header {
-          margin-bottom: 10px; }
-          header h1 {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            font-size: 85px;
-            font-weight: normal;
-            display: inline;
-            margin-left: -5px; }
-            header h2 {
-              font-style: italic;
-              font-weight: normal;
-              display: inline; }
-              header img {
-                height: 120px;
-                margin: -40px 0 0px -7px;
-                /border: 1px solid red; }
-                header a {
-                  text-decoration: none; }
-                  header a:hover, header a:active {
-                    text-decoration: none; }
-
-#nav ul {
+nav ul {
   list-style-type: none;
-  margin-top: -10px;
+  margin-top: -20px;
   padding-left: 0; }
-  #nav ul li {
+  nav ul li {
     display: inline;
     margin-left: 0; }
 
@@ -119,10 +107,20 @@ center {
   button#validate {
     margin: 0.5em 0em; }
 
-pre.poem {
-  margin-left: -1.3em;
-  font: inherit; }
+.popover {
+  font-size: 80%;
+  border-radius: 1px; }
 
-  .popover {
-    font-size: 80%;
-    border-radius: 1px; }
+  h2.decorate:before {
+    content: ">";
+    font-weight: normal;
+    margin: -1em;
+    padding-right: 1.2em;
+    color: #ccc; }
+
+    pre.poem {
+      margin-left: -2em;
+      margin-bottom: -1em;
+      font: inherit;
+      background-color: inherit;
+      border: none; }

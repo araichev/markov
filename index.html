@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>
-            Markov: A Game of Poems
+            Markov, A Game of Poems
         </title>
         <meta charset='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
@@ -12,7 +12,7 @@
         <link rel='stylesheet' href='css/style.css' />
     </head>
 </html>
-<body>
+<body id='index'>
     <header>
         <h1>
             Markov
@@ -23,6 +23,23 @@
         <h2>
             A Game of Poems
         </h2>
+        <nav>
+            <ul>
+                <li>
+                    <a href='index.html' id='nav-index'>
+                        Game
+                    </a>
+                </li>
+                <li>
+                    /
+                </li>
+                <li>
+                    <a href='poems.html' id='nav-poems'>
+                        Poems
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <div class="A">
         Greetings.
@@ -38,7 +55,7 @@
     </div>
     <div class="A">
         A Markov poem, as i call it, is a poem created by playing the game below, one step of which involves generating text via a
-        <abbr data-toggle="popover" data-trigger="focus" tabindex="0" data-content="A random process that changes states according to a transition rule that only depends on the current state.">
+        <abbr data-toggle='popover' data-trigger='focus' tabindex="0" data-content='A random process that changes states according to a transition rule that only depends on the current state.'>
             Markov process.
         </abbr>
     </div>
@@ -75,20 +92,20 @@
             </table>
         </li>
         <li>
-            <abbr data-toggle="popover" data-trigger="focus" tabindex="0" data-content="This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced.">
+            <abbr data-toggle='popover' data-trigger='focus' tabindex="0" data-content='This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced.'>
                 Mix
             </abbr>
-            the source texts to produce a new text.
+            the source texts to produce a new text with the selected number of words.
             <center>
                 <select id="num-words">
                     <option value="500">
-                        500
+                        500 words
                     </option>
                     <option value="1000">
-                        1000
+                        1000 words
                     </option>
                     <option value="2000">
-                        2000
+                        2000 words
                     </option>
                 </select>
                 <button id="make-mix">
@@ -100,11 +117,11 @@
         </li>
         <li>
             Write a poem satisfying Rule M: each word of the poem is (a) a word with the same 
-            <abbr data-toggle="popover" data-trigger="focus" tabindex="0" data-content="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'.">
+            <abbr data-toggle='popover' data-trigger='focus' tabindex="0" data-content="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'.">
                 stem
             </abbr>
             as a word in the mix or (b) a
-            <abbr id="stop-words" data-toggle="popover" data-trigger="focus" tabindex="0">
+            <abbr id="stop-words" data-toggle='popover' data-trigger='focus' tabindex="0">
                 stop word
             </abbr>
             . As an example of part (a), you can use 'required' if 'requiring' is in the mix.
@@ -142,7 +159,7 @@
         <a href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149">
             Think Python Exercise 13.8.
         </a>
-        Based on that exercise, i tried to make a program that writes poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov, A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, of all things; see
+        Based on that exercise, i tried to make my computer write poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov, A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, of all things; see
         <a href="misc/markov_chain.pdf">
             this American Scientist article.
         </a>

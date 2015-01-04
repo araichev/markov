@@ -5,7 +5,7 @@ def page($page_name):
             title:
                 "Markov, A Game of Poems"
             meta(charset='utf-8')
-            meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+            meta(name="keywords", content="markov, markov process, poetry, poem")
             link(rel="stylesheet", href="lib/bootstrap-3.2.0/css/bootstrap.min.css")
             link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
             link(rel='stylesheet' href='css/style.css')

@@ -1,0 +1,31 @@
+def page($page_name):
+    !DOCTYPE(html)
+    html:
+        head:
+            title:
+                "Markov, A Game of Poems"
+            meta(charset='utf-8')
+            meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+            link(rel="stylesheet", href="lib/bootstrap-3.2.0/css/bootstrap.min.css")
+            link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
+            link(rel='stylesheet' href='css/style.css')
+    body(id=$page_name):
+        header:
+            h1:
+                "Markov"
+            a(href="https://en.wikipedia.org/wiki/Andrey_Markov"):
+                img(src="misc/andrey_markov.png" title="Andrey Markov")
+            h2:
+                "A Game of Poems"  
+            nav:
+                ul:
+                    li:
+                        a(href='index.html', id='nav-index'):
+                            'Game'
+                    li:
+                        '/'
+                    li:
+                        a(href='poems.html', id='nav-poems'):
+                            'Poems'
+        page_content()
+        

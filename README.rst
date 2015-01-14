@@ -1,7 +1,7 @@
-Markov: A Game of Poems
+Markov, A Game of Poems
 ========================
-Poetry project under development.  
-Site at `markov-poems.net <http://markov-poems.net>`_.
+A poetry project under development.  
+Site at `markovpoems.net <http://markovpoems.net>`_.
 
 Requirements
 ------------
@@ -11,4 +11,4 @@ Requirements
 
 Todo
 ----
-- Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``)
+- Keep source files (``.pyml``, ``.sass``, ``.pyj``), remove corresponding built files (``.html``, ``.css``, ``.js``), and include a build script

@@ -9,7 +9,7 @@ def page_content():
             "email them to me."  
         "I like including the mixes, because they offer a glimpse into the poet's creative process."
     p:
-        "Play it safe and use source texts that you have permission to remix, such as those in the public domain. Your Markov poem will be licensed on this page as"
+        "To play it safe, use source texts that you have permission to remix, such as those in the public domain. Your Markov poem will be licensed on this page as"
         a(href="http://creativecommons.org/licenses/by-sa/3.0/nz/"):
             "Creative Commons Attribution-ShareAlike"
         "unless you specify an alternative license."   
@@ -198,5 +198,230 @@ def page_content():
         "Author"
     p:  
         "Alex Raichev, 2014-09, License CC BY-SA 3.0 NZ"
+#-----------------------------------------------------------------------------
+    h2(class="decorate"):
+        "Every Heaven is Hung by Clouds or Sown with Stars"
+    poem:
+        Give us time to reflect
+        What is life 
+        What is the content of our friend or wife 
+        Frightened of something
+        We become what we utter
+        Vehicular and transitive
+        
+        All symbols are fluxional
+        The mind will find a rational explanation 
+        And plunge itself into every partridge, fox, squirrel, and mole
+        And in the woods and waters roll
+        
+        But what is holistic? 
+        What is the soul? 
+        What arises from night?
+        What is history but an optical illusion 
+        About every person we meet
+        
+        See 
+        The foaming brook 
+        Without compunction
+        Our problem in the whole movement of thought
+        Must inevitably fall in its right place
+        
+        Wherever are forms with transparent boundaries 
+        Wherever are forms with transparent boundaries 
+        Wherever are outlets into celestial space 
+        Wherever is stillness and awe 
+        
+        The Caliph Ali is seeking after thee
+        Therefore be at rest from seeking after thee 
+        Therefore be at rest from seeking after it 
+
+    h3:
+        "Mix"
+    p:
+        "Lost it"
+    h3:
+        "Sources"
+    ul:
+        li: 
+            i:
+                "Essays"
+            "by Ralph Waldo Emerson" 
+        li:
+            "Talks by Jiddu Krishnamurti"
+    h3:
+        "Author"
+    p:
+        "Alex Raichev, 2014-04, License CC BY-SA 3.0 NZ"
+#-----------------------------------------------------------------------------
+    h2(class="decorate"):
+        "Free of Debts"
+    poem:
+        This is the way you become free of debts
+        You will be found in the connexion p implies p
+        And has no more than three
+         
+        Suggest to your mind some such possibility as this
+        That every proposition alters something in common
+        Between a fact
+        And an Infinite Space
+         
+        When you rise above your personality,
+        A Being above your personality,
+        A Being which is of great importance
+        The use of the Universal Mind
+        Is the explanation of the object itself
+          
+        The Universal Mind is the totality of propositions
+        And is based upon the Elements
+          
+        Given the composition of facts
+        To which objects are colourless
+        Two objects of the objects
+        Roughly speaking
+        The groups of truth conditions
+        Are equal numbers of white and black
+         
+        But to them that they are identical is nonsense
+        And to all the general form is the sign
+         
+        Essential are those which alone and independently have a threefold manifestation
+        Three functions attributes or characteristics
+        This and that and one
+        Essential and subtle
+        Law and Love
+         
+        If you want to visit the Atomic Plane
+        Esoteric meaning is always more or less vague
+        So every proposition is the same
+          
+        But the possibility of every truth operation on the mind and the proof
+        Must show that there are places for arguments
+        Of the probability Trs to Tr
+         
+        So the measure of the human organism is your Being
+        That is all
+         
+        But you may perceive some activity in the innermost depths
+        Ghosts of earthbound spirits
+        No proposition can contradict it
+          
+        Identity in the world is also given
+        This last is a Path that attempts to rediscover
+        The symbol for the other
+           
+        Do not be disturbed by apparent irregularities
+        Do not be disturbed by the marks of triangles and hexagons together
+        A particle cannot at its root mean the same as (∃x).fx
+        The determination is a sign
+           
+        Essential are those who find true peace
+        And quiet and strength
+        And renewal within the Causal Worlds
+                     
+        And whether found ascending in the East
+        Or descending in the West
+        The plane is without stress
+
+    h3:
+        "Mix"
+    p:
+        "Lost it."
+    h3:
+        "Sources"
+    ul:
+        li: 
+            i:
+                "Heavens and Hells of the Mind"
+            "by Imre Vallyon" 
+        li: 
+            i:
+                "Tractatus Logico-Philosophicus"
+            "by Ludwig Wittgenstein" 
+    h3:
+        "Author"
+    p:
+        "Alex Raichev, 2014-04, License CC BY-SA 3.0 NZ"
+
+#-----------------------------------------------------------------------------
+    h2(class="decorate"):
+        "Yes Sir!"
+    poem:
+        We are in the beginning of a lull
+        And I have had an emotional experience
+         
+        Very calmly and very quietly I say
+        All right
+        Look at Gunsmoke
+        Look at the proletariat
+        The anarchy in production
+        The crying inequalities in the modes of producing and appropriating products,
+        That is bound to have an answer
+        Get a Bible
+        Get others
+        Get the money
+         
+        That is the bourgeoisie
+        Use their life
+        Take their time and labor
+        They smash to pieces machinery
+        They set factories ablaze
+        They seek to alter the character of production
+          
+        Therefore as the people who profess one thing
+        One social thing
+        We go
+        Because we take the name of God at the foot of the old property relations
+        Not justified by faith
+        But cooking with gas now
+         
+        I say that's great
+        I say that's great
+        I say, Lady, if it's carried out in your place
+         
+        Dissolution going on before our television sets
+        Spending our time filling the night before
+        I saw an inscription coming up this mountain
+        To the unknown God
+        Do You believe in Christ?
+        Have you really given yourself to Christ?
+        Do You believe in Him?
+        I can do!
+        See Romans 6:20-23
+         
+        We take His name
+        We write it down
+        The Manifesto has become fully developed
+        A new life of the state of society
+        Minus its revolutionary and disintegrating elements
+         
+        And the heroes of modern American life?
+        Learn more by watching than by reading
+        Why do you know what living was?
+        I follow God and that place where the workers begin to form combinations
+        Trades' Unions
+        Against the bourgeoisie whenever it acts in a nuclear war
+         
+        That could be a revolution
+        On the floor of the Law
+        Administrative reforms based on class antagonisms be damned!
+        No flesh be justified!
+
+    h3:
+        "Mix"
+    p:
+        "Lost it"
+    h3:
+        "Sources"
+    ul:
+        li:
+            "Sermons of Billy Graham"
+        li:
+            i:
+                "The Communist Manifesto" 
+            "by Karl Mark and Frederick Engels"
+    h3:
+        "Author"
+    p:
+        "Alex Raichev, 2014-04, License CC BY-SA 3.0 NZ"        
 
 page('poems')

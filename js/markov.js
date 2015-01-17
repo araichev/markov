@@ -355,10 +355,6 @@
     };
     PREFIX_LENGTH = 2;
     STOP_WORDS = null;
-    $.get("misc/stop_words.txt", function(data) {
-        STOP_WORDS = data.trim().split(new RegExp("\\s+"));
-        $("#stop-words").attr("data-content", STOP_WORDS.join(", "));
-    });
     function normalize(string) {
         "\n    Replace the punctuation from the given text string with blanks,\n    lowercase all words, remove leading and trailing whitespace, \n    and return the resulting text string.\n    ";
         return string.replace(new RegExp("[\\\"\\|\\.,\\/#!$%\\^&\\*;:{}=_`(---)(--)~\\(\\)@\\+\\?><\\[\\]\\+]", "g"), " ").toLowerCase().trim();
@@ -514,6 +510,10 @@
             return _$rapyd$_Result;
         })();
         poem_words = normalize(load_poem()).split(new RegExp("\\s+"));
+        if (poem_words[0] === "") {
+            poem_words = [];
+        }
+        console.log("poem words", poem_words);
         invalid_words = [];
         var _$rapyd$_Iter8 = poem_words;
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
@@ -530,57 +530,64 @@
     function dump_validation(report) {
         $("#validation-report").html(report);
     }
-    $("#make-mix").click(function() {
-        $("#source1").effect("shake", {
-            "times": 3
-        }, 800);
-        $("#source2").effect("shake", {
-            "times": 3
-        }, 1e3);
-        $("#source3").effect("shake", {
-            "times": 3
-        }, 1200);
-        setTimeout(function() {
-            var source_texts, st, portions, merged_text, num_words, mix;
-            $("#mix").effect("shake", {
-                "times": 1
+    function main() {
+        $(function() {
+            $("[data-toggle=\"popover\"]").popover();
+        });
+        $.get("misc/stop_words.txt", function(data) {
+            STOP_WORDS = data.trim().split(new RegExp("\\s+"));
+            $("#stop-words").attr("data-content", STOP_WORDS.join(", "));
+        });
+        $("#make-mix").click(function() {
+            $("#source1").effect("shake", {
+                "times": 3
             }, 800);
-            source_texts = load_source_texts();
-            var _$rapyd$_Iter9 = source_texts;
-            for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
-                st = _$rapyd$_Iter9[_$rapyd$_Index9];
-                _$rapyd$_print(st);
-            }
-            portions = (function() {
-                var _$rapyd$_Iter = len(source_texts), _$rapyd$_Result = [], i;
-                for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
-                    i = _$rapyd$_Iter[_$rapyd$_Index];
-                    _$rapyd$_Result.push(1);
+            $("#source2").effect("shake", {
+                "times": 3
+            }, 1e3);
+            $("#source3").effect("shake", {
+                "times": 3
+            }, 1200);
+            setTimeout(function() {
+                var source_texts, st, portions, merged_text, num_words, mix;
+                $("#mix").effect("shake", {
+                    "times": 1
+                }, 800);
+                source_texts = load_source_texts();
+                var _$rapyd$_Iter9 = source_texts;
+                for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
+                    st = _$rapyd$_Iter9[_$rapyd$_Index9];
+                    _$rapyd$_print(st);
                 }
-                return _$rapyd$_Result;
-            })();
-            merged_text = get_merged_text(source_texts, portions);
-            _$rapyd$_print("num words in source", len(merged_text));
-            num_words = load_num_words();
-            mix = get_mix(merged_text, num_words);
-            _$rapyd$_print("num words in mix", len(mix));
-            dump_mix(mix.join(" "));
-        }, 1e3);
-    });
-    $("#validate").click(function() {
-        var invalid_words, report;
-        invalid_words = validate();
-        if (len(invalid_words) > 0) {
-            report = "Uh oh, the following words in your poem " + "appear to violate Rule M(a):" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
-        } else {
-            report = "<p>Success!</p>";
-        }
-        dump_validation(report);
-        $("html, body").animate({
-            "scrollTop": $("#validate").offset().top
-        }, 500);
-    });
-    $(function() {
-        $("[data-toggle=\"popover\"]").popover();
-    });
+                portions = (function() {
+                    var _$rapyd$_Iter = len(source_texts), _$rapyd$_Result = [], i;
+                    for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                        i = _$rapyd$_Iter[_$rapyd$_Index];
+                        _$rapyd$_Result.push(1);
+                    }
+                    return _$rapyd$_Result;
+                })();
+                merged_text = get_merged_text(source_texts, portions);
+                _$rapyd$_print("num words in source", len(merged_text));
+                num_words = load_num_words();
+                mix = get_mix(merged_text, num_words);
+                _$rapyd$_print("num words in mix", len(mix));
+                dump_mix(mix.join(" "));
+            }, 1e3);
+        });
+        $("#validate").click(function() {
+            var invalid_words, report;
+            invalid_words = validate();
+            if (len(invalid_words) > 0) {
+                report = "Uh oh, the following words in your poem " + "appear to violate Rule M(a):" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+            } else {
+                report = "<p>Success!</p>";
+            }
+            dump_validation(report);
+            $("html, body").animate({
+                "scrollTop": $("#validate").offset().top
+            }, 500);
+        });
+    }
+    main();
 })();

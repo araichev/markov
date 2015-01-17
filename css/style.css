@@ -1,15 +1,14 @@
 body {
   font-family: "open_sansregular", Helvetica, sans-serif;
-  / font-family: 'Georgia', serif;
   font-size: 17px;
   line-height: 1.4;
   color: black;
   margin: 30px auto;
   padding: 0px;
-  width: 765px; }
+  max-width: 765px; }
 
   header {
-    margin-bottom: 2em; }
+    margin-bottom: 0em; }
     header h1 {
       font-family: 'Georgia', serif;
       font-style: italic;
@@ -31,7 +30,7 @@ body {
 
 nav ul {
   list-style-type: none;
-  margin-top: -20px;
+  margin: -1.5em 0 2em 0;
   padding-left: 0; }
   nav ul li {
     display: inline;
@@ -87,7 +86,7 @@ ol {
 
 textarea {
   background-color: #ebebeb;
-  font-family: consolas, monospace;
+  font-family: Consolas, monospace;
   font-size: 15.3px;
   padding: 10px;
   border-radius: 1px;
@@ -97,7 +96,7 @@ textarea {
   height: 250px;
   margin: 1em 0; }
   textarea.source {
-    width: 225px; }
+    width: 238px; }
     textarea.short {
       height: 50px; }
 
@@ -115,12 +114,11 @@ center {
     content: ">";
     font-weight: normal;
     margin: -1em;
-    padding-right: 1.2em;
+    padding-right: 1.4em;
     color: #ccc; }
 
     pre.poem {
-      margin-left: -2em;
-      margin-bottom: -1em;
+      margin-left: -0.5em;
       font: inherit;
       background-color: inherit;
       border: none; }

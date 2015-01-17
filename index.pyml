@@ -53,6 +53,7 @@ def page_content():
                     label(class="btn btn-default")
                         input(type="radio", name="num-words-options", value="2000", autocomplete="off"):
                         "2000 words"
+                "&nbsp"
                 button(id="make-mix", class="btn btn-default"):
                     "Mix!"
             textarea(maxlength="1000000" id="mix")
@@ -102,10 +103,7 @@ def page_content():
             "alex@markovpoems.net." 
         
     
-    script(src='lib/jquery-2.1.1/jquery.min.js')
-    script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
     script(src='lib/porter_stemmer.min.js')
-    script(src='lib/bootstrap-3.2.0/js/bootstrap.min.js')
     script(src='js/markov.js')
 
 page('index')

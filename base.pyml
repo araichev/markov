@@ -9,14 +9,18 @@ def page($page_name):
             link(rel="stylesheet", href="lib/bootstrap-3.2.0/css/bootstrap.min.css")
             link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
             link(rel='stylesheet' href='css/style.css')
-    body(id=$page_name):
-        header:
-            h1:
-                "Markov"
-            a(href="https://en.wikipedia.org/wiki/Andrey_Markov"):
-                img(src="misc/andrey_markov.png" title="Andrey Markov")
-            h2:
-                "A Game of Poems"  
+            script(src='lib/jquery-2.1.1/jquery.min.js')
+            script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
+            script(src='lib/bootstrap-3.2.0/js/bootstrap.min.js')
+    
+        body(id=$page_name):
+            header:
+                h1:
+                    "Markov"
+                a(href="https://en.wikipedia.org/wiki/Andrey_Markov"):
+                    img(src="misc/andrey_markov.png" title="Andrey Markov")
+                h2:
+                    "A Game of Poems"  
             nav:
                 ul:
                     li:
@@ -27,5 +31,6 @@ def page($page_name):
                     li:
                         a(href='poems.html', id='nav-poems'):
                             'Poems'
-        page_content()
-        
+            page_content()
+ 
+       

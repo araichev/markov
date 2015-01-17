@@ -4,7 +4,7 @@ poem = verbatim('<pre class="poem">', '</pre>')
 
 def page_content():
     p:
-        "Here are some Markov poems. If you'd like to add to the collection below, gather (a) the titles/authors/URLs of your source texts, (b) the mix you used, (c) your poem, and (d) your pen name, and"
+        "Here are some Markov poems. If you would like to add to the collection below, gather (a) the titles/authors/URLs of your source texts, (b) the mix you used, (c) your poem, and (d) your pen name, and"
         a(href="mailto:alex@markovpoems.net?subject=Markov poem submission"):
             "email them to me."  
         "I like including the mixes, because they offer a glimpse into the poet's creative process."

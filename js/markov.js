@@ -14,16 +14,6 @@
         }
         return range;
     }
-    function len(obj) {
-        if (obj instanceof Array || typeof obj === "string") return obj.length;
-        else {
-            var count = 0;
-            for (var i in obj) {
-                if (obj.hasOwnProperty(i)) count++;
-            }
-            return count;
-        }
-    }
     function _$rapyd$_in(val, arr) {
         if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
         else {
@@ -41,6 +31,16 @@
     function _$rapyd$_extends(child, parent) {
         child.prototype = new parent;
         child.prototype.constructor = child;
+    }
+    function len(obj) {
+        if (obj instanceof Array || typeof obj === "string") return obj.length;
+        else {
+            var count = 0;
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i)) count++;
+            }
+            return count;
+        }
     }
     function _$rapyd$_print() {
         var args, output;
@@ -92,10 +92,10 @@
         return function() {
             var args, kw, i;
             args = [].slice.call(arguments);
-            if (args.length && args.length < f.length) {
+            if (args.length) {
                 kw = args.pop();
-                if (typeof kw == "object") {
-                    for (i = 0; i < len(argNames); i++) {
+                if (typeof kw === "object") {
+                    for (i = 0; i < argNames.length; i++) {
                         if (_$rapyd$_in(argNames[i], dir(kw))) {
                             args[i] = kw[argNames[i]];
                         }
@@ -104,42 +104,50 @@
                     args.push(kw);
                 }
             }
-            return f.apply(f, args);
+            return f.apply(this, args);
         };
     }
-    function IndexError(message){
+    function IndexError() {
+        this.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(IndexError, Error);
+    IndexError.prototype.__init__ = function __init__(message){
         var self = this;
         if (typeof message === "undefined") message = "list index out of range";
         self.name = "IndexError";
         self.message = message;
     };
 
-    _$rapyd$_extends(IndexError, Error);
-
-    function TypeError(message){
+    function TypeError() {
+        this.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(TypeError, Error);
+    TypeError.prototype.__init__ = function __init__(message){
         var self = this;
         self.name = "TypeError";
         self.message = message;
     };
 
-    _$rapyd$_extends(TypeError, Error);
-
-    function ValueError(message){
+    function ValueError() {
+        this.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(ValueError, Error);
+    ValueError.prototype.__init__ = function __init__(message){
         var self = this;
         self.name = "ValueError";
         self.message = message;
     };
 
-    _$rapyd$_extends(ValueError, Error);
-
-    function AssertionError(message){
+    function AssertionError() {
+        this.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(AssertionError, Error);
+    AssertionError.prototype.__init__ = function __init__(message){
         var self = this;
         if (typeof message === "undefined") message = "";
         self.name = "AssertionError";
         self.message = message;
     };
-
-    _$rapyd$_extends(AssertionError, Error);
 
     if (!Array.prototype.map) {
         
@@ -234,7 +242,7 @@
         }
         return false;
     }
-    String.prototype.find = Array.prototype.indexOf;
+    String.prototype.find = String.prototype.indexOf;
     String.prototype.strip = String.prototype.trim;
     String.prototype.lstrip = String.prototype.trimLeft;
     String.prototype.rstrip = String.prototype.trimRight;
@@ -265,7 +273,7 @@
     Array.prototype.index = function(index) {
         var val;
         val = this.find(index);
-        if (val == -1) {
+        if (val === -1) {
             throw new ValueError(str(index) + " is not in list");
         }
         return val;
@@ -371,7 +379,7 @@
         return word_lists;
     }
     function load_num_words() {
-        return parseInt($("#num-words").val());
+        return parseInt($("input[name=num-words-options]:checked").val());
     }
     function get_merged_text(word_lists, portions) {
         var P, m, counts, result, wl;

@@ -42,7 +42,7 @@ def load_source_texts():
     return word_lists
 
 def load_num_words():
-    return int($('#num-words').val())
+    return int($('input[name=num-words-options]:checked').val())
 
 def get_merged_text(word_lists, portions):
     """

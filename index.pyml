@@ -6,7 +6,7 @@ def page_content():
     div(class="Q"):
         "Hello, what is this?"
     div(class="A"):
-        "This is a webpage dedicated to making Markov poems."
+        "This is a website dedicated to making Markov poems."
     div(class="Q"):
         "What is a Markov poem?"
     div(class="A"):
@@ -43,14 +43,17 @@ def page_content():
                 "Mix" 
             "the source texts to produce a new text with the selected number of words." 
             center:
-                select(id="num-words"):
-                    option(value="500"):
+                span(id="num-words-widget", class="btn-group", data-toggle="buttons"):
+                    label(class="btn btn-default active")
+                        input(type="radio", name="num-words-options", value="500", checked, autocomplete="off"):
                         "500 words"
-                    option(value="1000"):
+                    label(class="btn btn-default")
+                        input(type="radio", name="num-words-options", value="1000", autocomplete="off"):
                         "1000 words"
-                    option(value="2000"):
+                    label(class="btn btn-default")
+                        input(type="radio", name="num-words-options", value="2000", autocomplete="off"):
                         "2000 words"
-                button(id="make-mix"):
+                button(id="make-mix", class="btn btn-default"):
                     "Mix!"
             textarea(maxlength="1000000" id="mix")
         li:
@@ -70,7 +73,7 @@ def page_content():
             #     "Check"
             "Check whether your poem satisfies Rule M."
             center:
-                button(id="validate"):
+                button(id="validate", class="btn btn-default"):
                     "Check!"
             div(id="validation-report")
     center:

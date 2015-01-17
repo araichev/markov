@@ -6,7 +6,7 @@
             Markov, A Game of Poems
         </title>
         <meta charset='utf-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+        <meta name="keywords" content="markov, markov process, poetry, poem" />
         <link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css" />
         <link rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css' />
         <link rel='stylesheet' href='css/style.css' />
@@ -48,7 +48,7 @@
         Hello, what is this?
     </div>
     <div class="A">
-        This is a webpage dedicated to making Markov poems.
+        This is a website dedicated to making Markov poems.
     </div>
     <div class="Q">
         What is a Markov poem?
@@ -97,18 +97,21 @@
             </abbr>
             the source texts to produce a new text with the selected number of words.
             <center>
-                <select id="num-words">
-                    <option value="500">
+                <span id="num-words-widget" class="btn-group" data-toggle='buttons'>
+                    <label class="btn btn-default active">
+                        <input type="radio" name="num-words-options" value="500" checked autocomplete="off" />
                         500 words
-                    </option>
-                    <option value="1000">
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="num-words-options" value="1000" autocomplete="off" />
                         1000 words
-                    </option>
-                    <option value="2000">
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="num-words-options" value="2000" autocomplete="off" />
                         2000 words
-                    </option>
-                </select>
-                <button id="make-mix">
+                    </label>
+                </span>
+                <button id="make-mix" class="btn btn-default">
                     Mix!
                 </button>
             </center>
@@ -131,7 +134,7 @@
         <li>
             Check whether your poem satisfies Rule M.
             <center>
-                <button id="validate">
+                <button id="validate" class="btn btn-default">
                     Check!
                 </button>
             </center>

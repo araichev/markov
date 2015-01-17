@@ -87,7 +87,7 @@ ol {
 
 textarea {
   background-color: #ebebeb;
-  font-family: consolas;
+  font-family: consolas, monospace;
   font-size: 15.3px;
   padding: 10px;
   border-radius: 1px;
@@ -124,3 +124,6 @@ center {
       font: inherit;
       background-color: inherit;
       border: none; }
+
+      .btn {
+        border-radius: 1px; }

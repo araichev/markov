@@ -85,22 +85,20 @@ def page_content():
     div(class="Q"):
         "I enjoyed that."
     div(class="A"):
-        "Glad to hear it."
+        "Glad to hear it. You might also like to read other people's Markov poems in the"
+        a(href="poems.html"):
+            "poems section" 
+        "of this site."
     div(class="Q"):
-        "Where did this game come from?"
+        "OK. By the way, where did this game come from?"
     div(class="A"):
-        "It was inspired by a computer programming exercise i read a few years ago," 
+        "It was inspired by a computer programming exercise i did a few years ago," 
         a(href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149"):
             "Think Python Exercise 13.8." 
-        "Based on that exercise, i tried to make my computer write poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov, A Game of Poems. Incidentally, i later learned that Andrey Markov invented his eponymous process through analyzing poetry, of all things; see"
+        "Based on that exercise, i tried to make my computer write poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov, A Game of Poems. Incidentally, i later learned through reading"
         a(href="misc/markov_chain.pdf"):
-            "this American Scientist article."
-    div(class="Q"):
-        "I might want to give you some feedback on this site later. How can i contact you?"
-    div(class="A"):
-        "You can email me at"
-        a(href="mailto:alex@markovpoems.net?subject=Markov poems feedback"):
-            "alex@markovpoems.net." 
+            "this American Scientist article"
+        "that Andrey Markov invented his eponymous process through analyzing poetry, of all things."
         
     
     script(src='lib/porter_stemmer.min.js')

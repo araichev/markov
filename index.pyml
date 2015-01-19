@@ -85,12 +85,9 @@ def page_content():
     div(class="Q"):
         "I enjoyed that."
     div(class="A"):
-        "Glad to hear it. You might also like to read other people's Markov poems in the"
-        a(href="poems.html"):
-            "poems section" 
-        "of this site."
+        "Glad to hear it."
     div(class="Q"):
-        "OK. By the way, where did this game come from?"
+        "Where did this game come from?"
     div(class="A"):
         "It was inspired by a computer programming exercise i did a few years ago," 
         a(href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149"):

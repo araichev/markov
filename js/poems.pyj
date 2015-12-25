@@ -21,16 +21,8 @@ def main():
 
     # Get data in files and then make map
     for f in poemFiles:
-        console.log(f)
-        $.getJSON(f, def(data, textStatus, jqXHR): 
-            console.log(textStatus)
-            console.log(data)
+        $.getJSON(f, def(data): 
             printPoem(data)
         )
-        # $.when($.getJSON(f)).done(
-        #     def(data): 
-        #         console.log(data)
-        #         printPoem(data)
-        # )
 
 main()

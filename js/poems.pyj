@@ -23,8 +23,8 @@ def main():
     for f in poemFiles:
         console.log(f)
         $.getJSON(f, def(data, textStatus, jqXHR): 
-            console.log(data)
             console.log(textStatus)
+            console.log(data)
             printPoem(data)
         )
         # $.when($.getJSON(f)).done(

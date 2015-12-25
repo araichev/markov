@@ -19,11 +19,11 @@ def page_content():
     # Poem files to include
     data:
         {"poemFiles": [
-            "../poems/jsonized/my_christ.json",
-            "../poems/jsonized/i_am_also_grateful.json",
-            "../poems/jsonized/the_world.json",
-            "../poems/jsonized/free_of_debts.json",
-            "../poems/jsonized/yes_sir.json"
+            "poems/jsonized/my_christ.json",
+            "poems/jsonized/i_am_also_grateful.json",
+            "poems/jsonized/the_world.json",
+            "poems/jsonized/free_of_debts.json",
+            "poems/jsonized/yes_sir.json"
         ]}
 
     # Script that inserts the poems

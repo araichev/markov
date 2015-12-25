@@ -285,8 +285,8 @@
             f = _$rapyd$_Iter7[_$rapyd$_Index7];
             console.log(f);
             $.getJSON(f, function(data, textStatus, jqXHR) {
-                console.log(data);
                 console.log(textStatus);
+                console.log(data);
                 printPoem(data);
             });
         }

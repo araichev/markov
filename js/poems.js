@@ -284,7 +284,7 @@
         for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
             f = _$rapyd$_Iter7[_$rapyd$_Index7];
             console.log(f);
-            $.when($.getJSON(f)).then(function(data, textStatus, jqXHR) {
+            $.getJSON(f, function(data, textStatus, jqXHR) {
                 console.log(data);
                 console.log(textStatus);
                 printPoem(data);

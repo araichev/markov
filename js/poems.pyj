@@ -1,0 +1,31 @@
+import stdlib
+
+
+def printPoem(data):
+    html = '<h2 class="decorate">' + data['title'] + '</h2>'
+    html += '<pre class="poem">' + data['poem'] + '</pre>'
+    html += '<h3>Mix</h3><p>' + data['mix'] + '</p>'
+    html += '<h3>Sources</h3><ul>'
+    for source in data['sources']:
+        html += '<li>' + source + '</li>'
+    html += '</ul>'
+    html += '<h3>Author</h3><p>' + data['author'] + ', ' +\
+      data['date'] + ', ' +\
+      data['license'] + '<br/><br/>'
+    $('#poems').append(html)
+
+def main():
+    # Get data from page
+    data = $.parseJSON($('#data').html())
+    poemFiles = data['poemFiles']
+    console.log(poemFiles)
+
+    # Get data in files and then make map
+    for f in poemFiles:
+        console.log(f)
+        $.when($.getJSON(f)).done(
+            def(data): 
+                printPoem(data)
+        )
+
+main()

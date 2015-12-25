@@ -1,0 +1,31 @@
+import base
+
+data = verbatim('<script type="application/json" id="data">', '</script>')
+
+def page_content():
+    p:
+        "Below are some Markov poems created by other players."
+    p:
+        "If you would like to add to the collection, gather (a) the titles/authors/URLs of your source texts, (b) the mix you used, (c) your poem, (d) your pen name, and (e) the license under which you would like to publish your work, e.g. Creative Commons Attribution-ShareAlike, and then"
+        a(href="mailto:alex@raichev.net?subject=Markov poem submission"):
+            "email the items to me."  
+        "I like including the mixes, because they offer a glimpse into the poet's creative process."
+        "To play it safe, please use source texts that you have permission to remix, such as those in the public domain."
+
+    # Poems will go into this section
+    section(id="poems")
+
+    # Poem files to include
+    data:
+        {"poemFiles": [
+            "../poems/jsonized/my_christ.json",
+            "../poems/jsonized/i_am_also_grateful.json",
+            "../poems/jsonized/the_world.json",
+            "../poems/jsonized/free_of_debts.json",
+            "../poems/jsonized/yes_sir.json"
+        ]}
+
+    # Script that inserts the poems
+    script(src="js/poems.js")
+
+page('poems')

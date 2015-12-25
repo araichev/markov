@@ -1,7 +1,7 @@
-Markov: A Game of Poems
+Markov, A Game of Poems
 ========================
-Poetry project under development.  
-Site at `markov-poems.net <http://markov-poems.net>`_.
+A website dedicated to Markov poems (definition included on website).
+
 
 Requirements
 ------------
@@ -9,6 +9,3 @@ Requirements
 - `RapydCSS <https://bitbucket.org/pyjeon/rapydcss>`_ for compiling RapydCSS (``.sass``) files to CSS
 - `RapydScript <https://github.com/atsepkov/RapydScript>`_ for compiling RapydScript (``.pyj``) files to JavaScript
 
-Todo
-----
-- Separate source files (``.pyml``, ``.sass``, ``.pyj``) from built files (``.html``, ``.css``, ``.js``)

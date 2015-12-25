@@ -1,0 +1,73 @@
+<!-- This page has been auto-generated using RapydML (http://www.pyjeon.com) -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Markov, A Game of Poems
+        </title>
+        <meta charset='utf-8' />
+        <meta name="keywords" content="markov, markov process, poetry, poem" />
+        <link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css" />
+        <link rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css' />
+        <link rel='stylesheet' href='css/style.css' />
+        <script src='lib/jquery-2.1.1/jquery.min.js'>
+        </script>
+        <script src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js'>
+        </script>
+        <script src='lib/bootstrap-3.2.0/js/bootstrap.min.js'>
+        </script>
+    </head>
+    <body id='poems'>
+        <header>
+            <h1>
+                Markov
+            </h1>
+            <a href="https://en.wikipedia.org/wiki/Andrey_Markov">
+                <img src="misc/andrey_markov.png" title="Andrey Markov" />
+            </a>
+            <h2>
+                A Game of Poems
+            </h2>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href='index.html' id='nav-index'>
+                        Game
+                    </a>
+                </li>
+                <li>
+                    /
+                </li>
+                <li>
+                    <a href='poems.html' id='nav-poems'>
+                        Poems
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <p>
+            Below are some Markov poems created by other players.
+        </p>
+        <p>
+            If you would like to add to the collection, gather (a) the titles/authors/URLs of your source texts, (b) the mix you used, (c) your poem, (d) your pen name, and (e) the license under which you would like to publish your work, e.g. Creative Commons Attribution-ShareAlike, and then
+            <a href="mailto:alex@raichev.net?subject=Markov poem submission">
+                email the items to me.
+            </a>
+            I like including the mixes, because they offer a glimpse into the poet's creative process.
+            To play it safe, please use source texts that you have permission to remix, such as those in the public domain.
+        </p>
+        <section id="poems" />
+        <script type="application/json" id="data">
+         {"poemFiles": [
+             "../poems/jsonized/my_christ.json",
+             "../poems/jsonized/i_am_also_grateful.json",
+             "../poems/jsonized/the_world.json",
+             "../poems/jsonized/free_of_debts.json",
+             "../poems/jsonized/yes_sir.json"
+         ]}
+        </script>
+        <script src="js/poems.js">
+        </script>
+    </body>
+</html>

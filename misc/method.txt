@@ -1,0 +1,92 @@
+Markov, a Game of Poems
+========================
+by Alex Raichev 2015-01
+
+I would like to describe a method for writing poetry,
+a kind of constrained writing that i adapted from an exercise in a computer programming textbook [footnote = Exercise 13.8 of _Think Python_ by Allen B. Downey] and quite enjoy.
+I call the method *Markov, a Game of Poems*, because games are more fun than methods and because the game involves a Markov process [footnote: A Markov process is a random process that changes state according to a transition rule that only depends on the current state.
+These processes are named after the Russian mathematician Andrey Markov (1856--1922) who first formalized and studied them as a result of analyzing poetry!].
+I call a poem produced by playing the game a *Markov poem*.
+
+Game
+-----
+Here's how you play.
+
+1. Choose one to three source texts, each of length at least 500 words.
+
+2. Chop the texts down to have equal word lengths, concatenate them, and perform the following analysis on the resulting text T. For each distinct contiguous pair of words (prefix) in T, make a list of the words that directly follow that pair (suffixes) in T. 
+For example if your text is
+
+    Beware the Jabberwock, my son! 
+    The jaws that bite, the claws that catch!
+    Beware the Jubjub bird, and shun 
+    The frumious Bandersnatch!
+
+then the outcome of the analysis is...
+
+    (Beware, the): [Jabberwock, Jubjub]
+    (the, Jabberwock): [my]
+    (Jabberwock, my): [son]
+    (my, son): [the]
+    (son, the): [jaws]
+    (the, jaws): [that]
+    (jaws, that): [bite]
+    (that, bite): [the]
+    (bite, the): [claws]
+    (the, claws): [that]
+    (claws, that): [catch]
+    (that, catch): [beware]
+    (catch, beware): [the]
+    (the, Jubjub): [bird]
+    (Jubjub, bird): [and]
+    (bird, and): [shun]
+    (and, shun): [the]
+    (shun, the): [frumious]
+    (the, frumious): [Bandersnatch]
+    (frumious, Bandersnatch): []
+
+Here each prefix has at most two suffixes: (Beware, the) has two, (frumious, Bandersnatch) has zero and the rest have one.
+In a long text, some prefixes would likely have many more than two suffixes.
+
+3. Create in stages a mix M of the text T as follows.
+
+    a. Choose at random a prefix from your list and then choose at random one of its suffixes. These three words, prefix then suffix, are the first three words of M.
+
+    b. Take the last pair of words of M, find it in you list of prefixes ---it must be there by design--- choose at random one of its suffixes, and add the suffix to M.
+    If no suffix exists for that pair ---which happens if and only if you chose the last prefix in the list--- then chose a new prefix from the list and one of its suffixes at random.
+
+    c. Repeat step b until M has length 500 words, say.
+
+4. Write a poem such that each word is (i) a word with the same stem as a word in the mix M or (ii) a stop word. 
+Regarding clause (i), the *stem* of a word is the root form of the word according to a natural language processing algorithm, such as the Porter algorithm; see https://en.wikipedia.org/wiki/Stemming. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have the stem 'argu'.
+So you can use the word 'argue' if any of its variants appear in M.
+Regarding clause (ii), a *stop word* is a very common word, such 'a', 'and', 'the', 'with'; see https://en.wikipedia.org/wiki/Stop_word for a list of stop words.
+If you are using a non-English language, than you need to use stems and stop words appropriate to that language.
+
+End game.  
+
+As you probably noticed, steps 2 and 3 can be tedious for any text T longer than a few dozen words.
+To make the game easier for us to play, i wrote a program that automates those steps and put it on the internet at http://markovpoems.net.
+The program can also do the stem and stop word check of step 4.
+
+Example
+-------
+OK, let's look at an example Markov poem, one by Auckland poet Lisa Samuels.
+
+Lisa chose the source texts... [list references not texts]
+
+She then used the Markov poems website to produce the mix... [insert mix]
+
+Using the mix as her palette of words and suggestive phrases, she then wrote the poem... [insert poem]
+
+As you can check by hand or using the website, Lisa did indeed write a Markov poem corresponding to the mix, that is, her poem satisfies clauses i and ii of step 4.
+
+Invitation
+-----------
+If this game appeals to you, then i invite you play it.
+Moreover, if you would like to submit your Markov poems for publication in a forthcoming chapbook dedicated to the game and edited by Makyla Curtis, then email [me/Makyla?] at [email address] with the following items by **1 June 2015**.
+
+- References (title, author, URL, etc.) to your source texts (but not the source texts themselves), texts whose copyrights permit mixing, such as those in the public domain
+- Your mix
+- Your Markov poem
+- Your pen name

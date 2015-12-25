@@ -1,0 +1,36 @@
+def page($page_name):
+    !DOCTYPE(html)
+    html:
+        head:
+            title:
+                "Markov, A Game of Poems"
+            meta(charset='utf-8')
+            meta(name="keywords", content="markov, markov process, poetry, poem")
+            link(rel="stylesheet", href="lib/bootstrap-3.2.0/css/bootstrap.min.css")
+            link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
+            link(rel='stylesheet' href='css/style.css')
+            script(src='lib/jquery-2.1.1/jquery.min.js')
+            script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
+            script(src='lib/bootstrap-3.2.0/js/bootstrap.min.js')
+    
+        body(id=$page_name):
+            header:
+                h1:
+                    "Markov"
+                a(href="https://en.wikipedia.org/wiki/Andrey_Markov"):
+                    img(src="misc/andrey_markov.png" title="Andrey Markov")
+                h2:
+                    "A Game of Poems"  
+            nav:
+                ul:
+                    li:
+                        a(href='index.html', id='nav-index'):
+                            'Game'
+                    li:
+                        '/'
+                    li:
+                        a(href='poems.html', id='nav-poems'):
+                            'Poems'
+            page_content()
+ 
+       

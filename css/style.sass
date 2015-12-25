@@ -3,18 +3,11 @@ $opacity: 1.0
 $font-size: 17px 
 $small-font-size: 12px
 $background-color: white
-$border-radius: 5px
+$border-radius: 1px
 $gray: rgb(235, 235, 235)
 
-@mixin box
-    background-color: $gray
-    font-family: consolas
-    font-size: 0.9*$font-size
-    padding: 10px
-    border-radius: 5px
 @mixin font($size, $line-height)
     font-family: "open_sansregular", Helvetica, sans-serif 
-    / font-family: 'Georgia', serif
     font-size: $size
     line-height: $line-height
     color: black
@@ -22,40 +15,31 @@ body
     @include font($font-size, 1.4)
     margin: 30px auto
     padding: 0px
-    width: 765px
-h1, h2, h3, h4, h5, h6
-    color: inherit
-    margin-bottom: 7px
-h3
-    font-size: 140%
-h4
-    font-size: 120%
-    display: inline
+    max-width: 765px
 header
-    margin-bottom: 10px
+    margin-bottom: 0em
     h1
         font-family: 'Georgia', serif
         font-style: italic
-        font-size: 80px
+        font-size: 85px
         font-weight: normal
         display: inline
-        margin-left: -5px
     h2
+        font-family: 'Georgia', serif
         font-style: italic
-        font-weight: normal
+        font-size: 25px
         display: inline
     img
         height: 120px
-        margin: 0 0 -30px -7px
-        /border: 1px solid red
+        margin: -40px 2px 0 -7px
     a
         text-decoration: none
         &:hover, &:active
             text-decoration: none
-#nav
+nav
     ul
         list-style-type: none
-        margin-top: -10px
+        margin: -1.2em 0 2em 0
         padding-left: 0
         li
             display: inline
@@ -65,6 +49,9 @@ a
     text-decoration: none
     &:hover, &:active
         text-decoration: underline
+        color: royalblue
+    &:visited
+        color: royalblue    
 body#index a#nav-index, body#poems a#nav-poems
     color: inherit
     &:hover, &:active
@@ -87,6 +74,8 @@ ol
     list-style-position: inside
     li:
         padding: 0
+ul
+    list-style-type: circle
 p 
     margin: 0 0 1em 0
 hr
@@ -100,20 +89,41 @@ table
     td
         padding: 0 15px 0 0
 textarea
-    @include box
+    background-color: $gray
+    font-family: Consolas, monospace
+    font-size: 0.9*$font-size
+    padding: 10px
+    border-radius: $border-radius
     border: none
     resize: none
     width: 745px
     height: 250px
     margin: 1em 0
     &.source
-        width: 225px
+        width: 238px
     &.short
         height: 50px
 center
     margin-top: 0.5em
-button#validate
-    margin: 0.5em 0em
+button
+    &#validate
+        margin: 0.5em 0em
+.popover
+    font-size: 80% 
+    border-radius: $border-radius
+h2.decorate:before
+    content: ">"
+    font-weight: normal
+    margin: -1em
+    padding-right: 1.4em
+    color: #ccc
 pre.poem
-    margin-left: -1.3em
+    margin-left: -0.5em
+    // margin-bottom: -1em
     font: inherit
+    background-color: inherit
+    border: none
+
+// Bootstrap ---------
+.btn 
+    border-radius: $border-radius

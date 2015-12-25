@@ -1,16 +1,9 @@
-import stdlib
+from stdlib import dict 
+
 
 PREFIX_LENGTH = 2
 STOP_WORDS = None
 # STOP_WORDS = ["i","me","my","myself","we","our","ours","ourselves","you","your","yours","yourself","yourselves","he","him","his","himself","she","her","hers","herself","it","its","itself","they","them","their","theirs","themselves","what","which","who","whom","this","that","these","those","am","is","are","was","were","be","been","being","have","has","had","having","do","does","did","doing","a","an","the","and","but","if","or","because","as","until","while","of","at","by","for","with","about","against","between","into","through","during","before","after","above","below","to","from","up","down","in","out","on","off","over","under","again","further","then","once","here","there","when","where","why","how","all","any","both","each","few","more","most","other","some","such","no","nor","not","only","own","same","so","than","too","very","s","t","can","will","just","don","should","now"]
-
-# Load stop words
-$.get('misc/stop_words.txt', def(data):
-    nonlocal STOP_WORDS
-    STOP_WORDS = data.trim().split(RegExp('\\s+'))
-    # Set them as the title text of the '#stop-words' element
-    $('#stop-words').prop('title', STOP_WORDS.join(', '))
-)
 
 def normalize(string):
     """
@@ -41,7 +34,7 @@ def load_source_texts():
     return word_lists
 
 def load_num_words():
-    return int($('#num-words').val())
+    return int($('input[name=num-words-options]:checked').val())
 
 def get_merged_text(word_lists, portions):
     """
@@ -164,6 +157,12 @@ def validate():
     mix_words = [word for word in mix if word not in STOP_WORDS]
     mix_stems = [stemmer(word) for word in mix_words]
     poem_words = normalize(load_poem()).split(RegExp('\\s+'))
+    
+    # Edge case
+    if poem_words[0] == '':
+        poem_words = []
+    
+    console.log('poem words', poem_words)
     invalid_words = []
     for word in poem_words:
         if word in STOP_WORDS:
@@ -175,35 +174,52 @@ def validate():
 def dump_validation(report):
     $('#validation-report').html(report)
 
-$('#make-mix').click(def():
-    $("#source1" ).effect("shake", {'times':3}, 800)
-    $("#source2" ).effect("shake", {'times':3}, 1000)
-    $("#source3" ).effect("shake", {'times':3}, 1200)
-    setTimeout(def():
-        $("#mix" ).effect("shake", {'times':1}, 800)
-        source_texts = load_source_texts()
-        for st in source_texts:
-            print(st)
-        portions = [1 for i in len(source_texts)]
-        merged_text = get_merged_text(source_texts, portions)
-        print('num words in source', len(merged_text))
-        num_words = load_num_words()
-        mix = get_mix(merged_text, num_words)
-        print('num words in mix', len(mix))
-        dump_mix(mix.join(' '))
-    ,1000)
-)        
-$('#validate').click(def():
-    invalid_words = validate()
-    if len(invalid_words) > 0:
-        report = 'Uh oh, the following words in your poem ' +\
-        'appear to violate Rule M(a):' +\
-        '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
-    else:
-        report = '<p>Success!</p>'
-    dump_validation(report)
-    # Scroll to validation report
-    $('html, body').animate({
-        'scrollTop': $("#validate").offset().top
-        }, 500)
-)
+def main():
+    # Enable Bootstrap popovers
+    $(def(): 
+        $('[data-toggle="popover"]').popover()
+    )    
+
+    # Load stop words
+    $.get('misc/stop_words.txt', def(data):
+        nonlocal STOP_WORDS
+        STOP_WORDS = data.trim().split(RegExp('\\s+'))
+        # Set them as the title text of the '#stop-words' element
+        $('#stop-words').attr('data-content', STOP_WORDS.join(', '))
+    )
+
+    $('#make-mix').click(def():
+        $("#source1" ).effect("shake", {'times':3}, 800)
+        $("#source2" ).effect("shake", {'times':3}, 1000)
+        $("#source3" ).effect("shake", {'times':3}, 1200)
+        setTimeout(def():
+            $("#mix" ).effect("shake", {'times':1}, 800)
+            source_texts = load_source_texts()
+            for st in source_texts:
+                print(st)
+            portions = [1 for i in len(source_texts)]
+            merged_text = get_merged_text(source_texts, portions)
+            print('num words in source', len(merged_text))
+            num_words = load_num_words()
+            mix = get_mix(merged_text, num_words)
+            print('num words in mix', len(mix))
+            dump_mix(mix.join(' '))
+        ,1000)
+    )        
+
+    $('#validate').click(def():
+        invalid_words = validate()
+        if len(invalid_words) > 0:
+            report = 'Uh oh, the following words in your poem ' +\
+            'appear to violate Rule M(a):' +\
+            '<textarea class="short">' + invalid_words.join(', ') + '</textarea>'
+        else:
+            report = '<p>Success!</p>'
+        dump_validation(report)
+        # Scroll to validation report
+        $('html, body').animate({
+            'scrollTop': $("#validate").offset().top
+            }, 500)
+    )
+
+main()

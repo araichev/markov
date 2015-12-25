@@ -1,88 +1,80 @@
 (function(){
+    "use strict";
+    var _$rapyd$_Temp;
     function range(start, stop, step) {
+        var length, idx, range;
         if (arguments.length <= 1) {
             stop = start || 0;
             start = 0;
         }
         step = arguments[2] || 1;
-        var length = Math.max (Math.ceil ((stop - start) / step) , 0);
-        var idx = 0;
-        var range = new Array(length);
+        length = Math.max(Math.ceil((stop - start) / step), 0);
+        idx = 0;
+        range = new Array(length);
         while (idx < length) {
             range[idx++] = start;
             start += step;
         }
         return range;
     }
-    function len(obj) {
-        if (obj instanceof Array || typeof obj === "string") return obj.length;
-        else {
-            var count = 0;
-            for (var i in obj) {
-                if (obj.hasOwnProperty(i)) count++;
-            }
-            return count;
+    function _$rapyd$_Iterable(iterable) {
+        if (iterable instanceof Array || iterable instanceof String || typeof iterable === "string") {
+            return iterable;
         }
+        return Object.keys(iterable);
     }
     function _$rapyd$_in(val, arr) {
-        if (arr instanceof Array || typeof arr === "string") return arr.indexOf(val) != -1;
-        else {
-            if (arr.hasOwnProperty(val)) return true;
+        if (arr instanceof Array || typeof arr === "string") {
+            return arr.indexOf(val) !== -1;
+        } else {
+            if (arr.hasOwnProperty(val)) {
+                return true;
+            }
             return false;
         }
     }
     function dir(item) {
-        var arr = [];
+        var arr;
+        arr = [];
         for (var i in item) {
             arr.push(i);
         }
         return arr;
     }
     function _$rapyd$_extends(child, parent) {
-        child.prototype = new parent;
+        child.prototype = Object.create(parent.prototype);
         child.prototype.constructor = child;
     }
-    function _$rapyd$_print() {
-        var args, output;
-        args = [].slice.call(arguments, 0);
-        output = JSON.stringify(args);
-        if ("console" in window) console.log(output.substr(1, output.length-2));
-    }
-    var JSON, str, PREFIX_LENGTH, STOP_WORDS;
-            JSON = JSON || {};
-    if (!JSON.stringify) {
-        
-    JSON.stringify = function(obj) {
-        var t = typeof (obj);
-        if (t != "object" || obj === null) {
-            // simple data type
-            if (t == "string")
-                obj = '"' + obj + '"';
-            if (t == "function")
-                return; // return undefined
-            else
-                return String(obj);
+    function len(obj) {
+        var count;
+        if (obj instanceof Array || typeof obj === "string") {
+            return obj.length;
         } else {
-            // recurse array or object
-            var n, v, json = []
-            var arr = (obj && obj.constructor == Array);
-            for (n in obj) {
-                v = obj[n];
-                t = typeof (v);
-                if (t != "function" && t != "undefined") {
-                    if (t == "string")
-                        v = '"' + v + '"';
-                    else if ((t == "object" || t == "function") && v !== null)
-                        v = JSON.stringify(v);
-                    json.push((arr ? "" : '"' + n + '":') + String(v));
+            count = 0;
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    count += 1;
                 }
             }
-            return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+            return count;
         }
-    };
-    ;
     }
-    str = JSON.stringify;
+    function sum(arr, start) {
+        if (typeof start === "undefined") start = 0;
+        return arr.reduce(function(prev, cur) {
+            return prev + cur;
+        }, start);
+    }
+    function _$rapyd$_print() {
+        var args = [].slice.call(arguments, 0);
+        var output;
+        output = JSON.stringify(args);
+        if (typeof console === "object") {
+            console.log(output.substr(1, output.length - 2));
+        }
+    }
+    var str, PREFIX_LENGTH, STOP_WORDS;
+            str = JSON.stringify;
     function kwargs(f) {
         var argNames;
         argNames = f.toString().match(/\(([^\)]+)/)[1];
@@ -92,10 +84,10 @@
         return function() {
             var args, kw, i;
             args = [].slice.call(arguments);
-            if (args.length && args.length < f.length) {
+            if (args.length) {
                 kw = args.pop();
-                if (typeof kw == "object") {
-                    for (i = 0; i < len(argNames); i++) {
+                if (typeof kw === "object") {
+                    for (i = 0; i < argNames.length; i++) {
                         if (_$rapyd$_in(argNames[i], dir(kw))) {
                             args[i] = kw[argNames[i]];
                         }
@@ -104,101 +96,53 @@
                     args.push(kw);
                 }
             }
-            return f.apply(f, args);
+            return f.apply(this, args);
         };
     }
-    function IndexError(message){
+    function IndexError() {
+        IndexError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(IndexError, Error);
+    IndexError.prototype.__init__ = function __init__(message){
         var self = this;
         if (typeof message === "undefined") message = "list index out of range";
         self.name = "IndexError";
         self.message = message;
     };
 
-    _$rapyd$_extends(IndexError, Error);
-
-    function TypeError(message){
+    function TypeError() {
+        TypeError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(TypeError, Error);
+    TypeError.prototype.__init__ = function __init__(message){
         var self = this;
         self.name = "TypeError";
         self.message = message;
     };
 
-    _$rapyd$_extends(TypeError, Error);
-
-    function ValueError(message){
+    function ValueError() {
+        ValueError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(ValueError, Error);
+    ValueError.prototype.__init__ = function __init__(message){
         var self = this;
         self.name = "ValueError";
         self.message = message;
     };
 
-    _$rapyd$_extends(ValueError, Error);
-
-    function AssertionError(message){
+    function AssertionError() {
+        AssertionError.prototype.__init__.apply(this, arguments);
+    }
+    _$rapyd$_extends(AssertionError, Error);
+    AssertionError.prototype.__init__ = function __init__(message){
         var self = this;
         if (typeof message === "undefined") message = "";
         self.name = "AssertionError";
         self.message = message;
     };
 
-    _$rapyd$_extends(AssertionError, Error);
-
-    if (!Array.prototype.map) {
-        
-	Array.prototype.map = function(callback, thisArg) {
-		var T, A, k;
-		if (this == null) {
-			throw new TypeError(" this is null or not defined");
-		}
-		var O = Object(this);
-		var len = O.length >>> 0;
-		if ({}.toString.call(callback) != "[object Function]") {
-			throw new TypeError(callback + " is not a function");
-		}
-		if (thisArg) {
-			T = thisArg;
-		}
-		A = new Array(len);
-		for (var k = 0; k < len; k++) {
-			var kValue, mappedValue;
-			if (k in O) {
-				kValue = O[k];
-				mappedValue = callback.call(T, kValue);
-				A[k] = mappedValue;
-			}
-		}
-		return A;
-	};
-	;
-    }
     function map(oper, arr) {
         return list(arr.map(oper));
-    }
-    if (!Array.prototype.filter) {
-        
-	Array.prototype.filter = function(filterfun, thisArg) {
-		"use strict";
-		if (this == null) {
-			throw new TypeError(" this is null or not defined");
-		}
-		var O = Object(this);
-		var len = O.length >>> 0;
-		if ({}.toString.call(filterfun) != "[object Function]") {
-			throw new TypeError(filterfun + " is not a function");
-		}
-		if (thisArg) {
-			T = thisArg;
-		}
-		var A = [];
-		var thisp = arguments[1];
-		for (var k = 0; k < len; k++) {
-			if (k in O) {
-				var val = O[k]; // in case fun mutates this
-				if (filterfun.call(T, val))
-					A.push(val);
-			}
-		}
-		return A;
-	};
-	;
     }
     function filter(oper, arr) {
         return list(arr.filter(oper));
@@ -219,7 +163,7 @@
             if (a.constructor !== b.constructor || a.length !== b.length) {
                 return false;
             }
-            var _$rapyd$_Iter0 = dict.keys(a);
+            var _$rapyd$_Iter0 = _$rapyd$_Iterable(dict.keys(a));
             for (var _$rapyd$_Index0 = 0; _$rapyd$_Index0 < _$rapyd$_Iter0.length; _$rapyd$_Index0++) {
                 i = _$rapyd$_Iter0[_$rapyd$_Index0];
                 if (b.hasOwnProperty(i)) {
@@ -234,7 +178,7 @@
         }
         return false;
     }
-    String.prototype.find = Array.prototype.indexOf;
+    String.prototype.find = String.prototype.indexOf;
     String.prototype.strip = String.prototype.trim;
     String.prototype.lstrip = String.prototype.trimLeft;
     String.prototype.rstrip = String.prototype.trimRight;
@@ -253,7 +197,7 @@
         if (typeof iterable === "undefined") iterable = [];
         var result, i;
         result = [];
-        var _$rapyd$_Iter1 = iterable;
+        var _$rapyd$_Iter1 = _$rapyd$_Iterable(iterable);
         for (var _$rapyd$_Index1 = 0; _$rapyd$_Index1 < _$rapyd$_Iter1.length; _$rapyd$_Index1++) {
             i = _$rapyd$_Iter1[_$rapyd$_Index1];
             result.append(i);
@@ -265,7 +209,7 @@
     Array.prototype.index = function(index) {
         var val;
         val = this.find(index);
-        if (val == -1) {
+        if (val === -1) {
             throw new ValueError(str(index) + " is not in list");
         }
         return val;
@@ -291,7 +235,7 @@
     function dict(iterable) {
         var result, key;
         result = {};
-        var _$rapyd$_Iter2 = iterable;
+        var _$rapyd$_Iter2 = _$rapyd$_Iterable(iterable);
         for (var _$rapyd$_Index2 = 0; _$rapyd$_Index2 < _$rapyd$_Iter2.length; _$rapyd$_Index2++) {
             key = _$rapyd$_Iter2[_$rapyd$_Index2];
             result[key] = iterable[key];
@@ -319,7 +263,7 @@
     dict.values = function(hash) {
         var vals, key;
         vals = [];
-        var _$rapyd$_Iter3 = dict.keys(hash);
+        var _$rapyd$_Iter3 = _$rapyd$_Iterable(dict.keys(hash));
         for (var _$rapyd$_Index3 = 0; _$rapyd$_Index3 < _$rapyd$_Iter3.length; _$rapyd$_Index3++) {
             key = _$rapyd$_Iter3[_$rapyd$_Index3];
             vals.append(hash[key]);
@@ -329,7 +273,7 @@
     dict.items = function(hash) {
         var items, key;
         items = [];
-        var _$rapyd$_Iter4 = dict.keys(hash);
+        var _$rapyd$_Iter4 = _$rapyd$_Iterable(dict.keys(hash));
         for (var _$rapyd$_Index4 = 0; _$rapyd$_Index4 < _$rapyd$_Iter4.length; _$rapyd$_Index4++) {
             key = _$rapyd$_Iter4[_$rapyd$_Index4];
             items.append([key, hash[key]]);
@@ -339,7 +283,7 @@
     dict.copy = dict;
     dict.clear = function(hash) {
         var key;
-        var _$rapyd$_Iter5 = dict.keys(hash);
+        var _$rapyd$_Iter5 = _$rapyd$_Iterable(dict.keys(hash));
         for (var _$rapyd$_Index5 = 0; _$rapyd$_Index5 < _$rapyd$_Iter5.length; _$rapyd$_Index5++) {
             key = _$rapyd$_Iter5[_$rapyd$_Index5];
             delete hash[key];
@@ -347,10 +291,6 @@
     };
     PREFIX_LENGTH = 2;
     STOP_WORDS = null;
-    $.get("misc/stop_words.txt", function(data) {
-        STOP_WORDS = data.trim().split(new RegExp("\\s+"));
-        $("#stop-words").prop("title", STOP_WORDS.join(", "));
-    });
     function normalize(string) {
         "\n    Replace the punctuation from the given text string with blanks,\n    lowercase all words, remove leading and trailing whitespace, \n    and return the resulting text string.\n    ";
         return string.replace(new RegExp("[\\\"\\|\\.,\\/#!$%\\^&\\*;:{}=_`(---)(--)~\\(\\)@\\+\\?><\\[\\]\\+]", "g"), " ").toLowerCase().trim();
@@ -360,7 +300,7 @@
         "\n    Get the source texts from the source text boxes on the webpage,\n    apply ``normalize()`` to each text, split each text on its whitespace, \n    and return the resulting word lists.\n    ";
         texts = [ $("#source1").val(), $("#source2").val(), $("#source3").val() ];
         word_lists = [];
-        var _$rapyd$_Iter6 = texts;
+        var _$rapyd$_Iter6 = _$rapyd$_Iterable(texts);
         for (var _$rapyd$_Index6 = 0; _$rapyd$_Index6 < _$rapyd$_Iter6.length; _$rapyd$_Index6++) {
             text = _$rapyd$_Iter6[_$rapyd$_Index6];
             word_list = normalize(text).split(new RegExp("\\s+"));
@@ -371,14 +311,14 @@
         return word_lists;
     }
     function load_num_words() {
-        return parseInt($("#num-words").val());
+        return parseInt($("input[name=num-words-options]:checked").val());
     }
     function get_merged_text(word_lists, portions) {
         var P, m, counts, result, wl;
         "\n    Truncate the given word lists according to the given portions,\n    concatenate the truncations into one word list, and return the result.\n    ";
         P = sum(portions);
         m = Math.min.apply(Math, [].concat((function() {
-            var _$rapyd$_Iter = word_lists, _$rapyd$_Result = [], wl;
+            var _$rapyd$_Iter = _$rapyd$_Iterable(word_lists), _$rapyd$_Result = [], wl;
             for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
                 wl = _$rapyd$_Iter[_$rapyd$_Index];
                 _$rapyd$_Result.push(len(wl));
@@ -386,7 +326,7 @@
             return _$rapyd$_Result;
         })()));
         counts = (function() {
-            var _$rapyd$_Iter = portions, _$rapyd$_Result = [], p;
+            var _$rapyd$_Iter = _$rapyd$_Iterable(portions), _$rapyd$_Result = [], p;
             for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
                 p = _$rapyd$_Iter[_$rapyd$_Index];
                 _$rapyd$_Result.push(Math.max(PREFIX_LENGTH, Math.ceil(m * p / P)));
@@ -394,7 +334,7 @@
             return _$rapyd$_Result;
         })();
         word_lists = (function() {
-            var _$rapyd$_Iter = range(len(word_lists)), _$rapyd$_Result = [], i;
+            var _$rapyd$_Iter = _$rapyd$_Iterable(range(len(word_lists))), _$rapyd$_Result = [], i;
             for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
                 i = _$rapyd$_Iter[_$rapyd$_Index];
                 _$rapyd$_Result.push(word_lists[i].slice(0, counts[i]));
@@ -402,7 +342,7 @@
             return _$rapyd$_Result;
         })();
         result = [];
-        var _$rapyd$_Iter7 = word_lists;
+        var _$rapyd$_Iter7 = _$rapyd$_Iterable(word_lists);
         for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
             wl = _$rapyd$_Iter7[_$rapyd$_Index7];
             result.extend(wl);
@@ -488,7 +428,7 @@
         var mix, mix_words, mix_stems, poem_words, invalid_words, word;
         mix = normalize(load_mix()).split(new RegExp("\\s+"));
         mix_words = (function() {
-            var _$rapyd$_Iter = mix, _$rapyd$_Result = [], word;
+            var _$rapyd$_Iter = _$rapyd$_Iterable(mix), _$rapyd$_Result = [], word;
             for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
                 word = _$rapyd$_Iter[_$rapyd$_Index];
                 if (!(_$rapyd$_in(word, STOP_WORDS))) {
@@ -498,7 +438,7 @@
             return _$rapyd$_Result;
         })();
         mix_stems = (function() {
-            var _$rapyd$_Iter = mix_words, _$rapyd$_Result = [], word;
+            var _$rapyd$_Iter = _$rapyd$_Iterable(mix_words), _$rapyd$_Result = [], word;
             for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
                 word = _$rapyd$_Iter[_$rapyd$_Index];
                 _$rapyd$_Result.push(stemmer(word));
@@ -506,8 +446,12 @@
             return _$rapyd$_Result;
         })();
         poem_words = normalize(load_poem()).split(new RegExp("\\s+"));
+        if (poem_words[0] === "") {
+            poem_words = [];
+        }
+        console.log("poem words", poem_words);
         invalid_words = [];
-        var _$rapyd$_Iter8 = poem_words;
+        var _$rapyd$_Iter8 = _$rapyd$_Iterable(poem_words);
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {
             word = _$rapyd$_Iter8[_$rapyd$_Index8];
             if (_$rapyd$_in(word, STOP_WORDS)) {
@@ -522,54 +466,64 @@
     function dump_validation(report) {
         $("#validation-report").html(report);
     }
-    $("#make-mix").click(function() {
-        $("#source1").effect("shake", {
-            "times": 3
-        }, 800);
-        $("#source2").effect("shake", {
-            "times": 3
-        }, 1e3);
-        $("#source3").effect("shake", {
-            "times": 3
-        }, 1200);
-        setTimeout(function() {
-            var source_texts, st, portions, merged_text, num_words, mix;
-            $("#mix").effect("shake", {
-                "times": 1
+    function main() {
+        $(function() {
+            $("[data-toggle=\"popover\"]").popover();
+        });
+        $.get("misc/stop_words.txt", function(data) {
+            STOP_WORDS = data.trim().split(new RegExp("\\s+"));
+            $("#stop-words").attr("data-content", STOP_WORDS.join(", "));
+        });
+        $("#make-mix").click(function() {
+            $("#source1").effect("shake", {
+                "times": 3
             }, 800);
-            source_texts = load_source_texts();
-            var _$rapyd$_Iter9 = source_texts;
-            for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
-                st = _$rapyd$_Iter9[_$rapyd$_Index9];
-                _$rapyd$_print(st);
-            }
-            portions = (function() {
-                var _$rapyd$_Iter = len(source_texts), _$rapyd$_Result = [], i;
-                for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
-                    i = _$rapyd$_Iter[_$rapyd$_Index];
-                    _$rapyd$_Result.push(1);
+            $("#source2").effect("shake", {
+                "times": 3
+            }, 1e3);
+            $("#source3").effect("shake", {
+                "times": 3
+            }, 1200);
+            setTimeout(function() {
+                var source_texts, st, portions, merged_text, num_words, mix;
+                $("#mix").effect("shake", {
+                    "times": 1
+                }, 800);
+                source_texts = load_source_texts();
+                var _$rapyd$_Iter9 = _$rapyd$_Iterable(source_texts);
+                for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
+                    st = _$rapyd$_Iter9[_$rapyd$_Index9];
+                    _$rapyd$_print(st);
                 }
-                return _$rapyd$_Result;
-            })();
-            merged_text = get_merged_text(source_texts, portions);
-            _$rapyd$_print("num words in source", len(merged_text));
-            num_words = load_num_words();
-            mix = get_mix(merged_text, num_words);
-            _$rapyd$_print("num words in mix", len(mix));
-            dump_mix(mix.join(" "));
-        }, 1e3);
-    });
-    $("#validate").click(function() {
-        var invalid_words, report;
-        invalid_words = validate();
-        if (len(invalid_words) > 0) {
-            report = "Uh oh, the following words in your poem " + "appear to violate Rule M(a):" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
-        } else {
-            report = "<p>Success!</p>";
-        }
-        dump_validation(report);
-        $("html, body").animate({
-            "scrollTop": $("#validate").offset().top
-        }, 500);
-    });
+                portions = (function() {
+                    var _$rapyd$_Iter = _$rapyd$_Iterable(len(source_texts)), _$rapyd$_Result = [], i;
+                    for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
+                        i = _$rapyd$_Iter[_$rapyd$_Index];
+                        _$rapyd$_Result.push(1);
+                    }
+                    return _$rapyd$_Result;
+                })();
+                merged_text = get_merged_text(source_texts, portions);
+                _$rapyd$_print("num words in source", len(merged_text));
+                num_words = load_num_words();
+                mix = get_mix(merged_text, num_words);
+                _$rapyd$_print("num words in mix", len(mix));
+                dump_mix(mix.join(" "));
+            }, 1e3);
+        });
+        $("#validate").click(function() {
+            var invalid_words, report;
+            invalid_words = validate();
+            if (len(invalid_words) > 0) {
+                report = "Uh oh, the following words in your poem " + "appear to violate Rule M(a):" + "<textarea class=\"short\">" + invalid_words.join(", ") + "</textarea>";
+            } else {
+                report = "<p>Success!</p>";
+            }
+            dump_validation(report);
+            $("html, body").animate({
+                "scrollTop": $("#validate").offset().top
+            }, 500);
+        });
+    }
+    main();
 })();

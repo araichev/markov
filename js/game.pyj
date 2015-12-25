@@ -162,7 +162,6 @@ def validate():
     if poem_words[0] == '':
         poem_words = []
     
-    console.log('poem words', poem_words)
     invalid_words = []
     for word in poem_words:
         if word in STOP_WORDS:

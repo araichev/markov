@@ -449,7 +449,6 @@
         if (poem_words[0] === "") {
             poem_words = [];
         }
-        console.log("poem words", poem_words);
         invalid_words = [];
         var _$rapyd$_Iter8 = _$rapyd$_Iterable(poem_words);
         for (var _$rapyd$_Index8 = 0; _$rapyd$_Index8 < _$rapyd$_Iter8.length; _$rapyd$_Index8++) {

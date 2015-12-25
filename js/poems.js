@@ -284,8 +284,8 @@
         var _$rapyd$_Iter7 = _$rapyd$_Iterable(poemFiles);
         for (var _$rapyd$_Index7 = 0; _$rapyd$_Index7 < _$rapyd$_Iter7.length; _$rapyd$_Index7++) {
             f = _$rapyd$_Iter7[_$rapyd$_Index7];
-            console.log(f);
             $.when($.getJSON(f)).done(function(data) {
+                console.log(data);
                 printPoem(data);
             });
         }

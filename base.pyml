@@ -9,9 +9,6 @@ def page($page_name):
             link(rel="stylesheet", href="lib/bootstrap-3.2.0/css/bootstrap.min.css")
             link(rel='stylesheet' href='css/fonts/Open-Sans/stylesheet.css')  
             link(rel='stylesheet' href='css/style.css')
-            script(src='lib/jquery-2.1.1/jquery.min.js')
-            script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
-            script(src='lib/bootstrap-3.2.0/js/bootstrap.min.js')
     
         body(id=$page_name):
             header:
@@ -31,6 +28,10 @@ def page($page_name):
                     li:
                         a(href='poems.html', id='nav-poems'):
                             'Poems'
+
+            script(src='lib/jquery-2.1.1/jquery.min.js')
+            script(src='lib/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js')
+            script(src='lib/bootstrap-3.2.0/js/bootstrap.min.js')
             page_content()
  
        

@@ -65,14 +65,6 @@
             return prev + cur;
         }, start);
     }
-    function _$rapyd$_print() {
-        var args = [].slice.call(arguments, 0);
-        var output;
-        output = JSON.stringify(args);
-        if (typeof console === "object") {
-            console.log(output.substr(1, output.length - 2));
-        }
-    }
     var str, PREFIX_LENGTH, STOP_WORDS;
             str = JSON.stringify;
     function kwargs(f) {
@@ -484,16 +476,11 @@
                 "times": 3
             }, 1200);
             setTimeout(function() {
-                var source_texts, st, portions, merged_text, num_words, mix;
+                var source_texts, portions, merged_text, num_words, mix;
                 $("#mix").effect("shake", {
                     "times": 1
                 }, 800);
                 source_texts = load_source_texts();
-                var _$rapyd$_Iter9 = _$rapyd$_Iterable(source_texts);
-                for (var _$rapyd$_Index9 = 0; _$rapyd$_Index9 < _$rapyd$_Iter9.length; _$rapyd$_Index9++) {
-                    st = _$rapyd$_Iter9[_$rapyd$_Index9];
-                    _$rapyd$_print(st);
-                }
                 portions = (function() {
                     var _$rapyd$_Iter = _$rapyd$_Iterable(len(source_texts)), _$rapyd$_Result = [], i;
                     for (var _$rapyd$_Index = 0; _$rapyd$_Index < _$rapyd$_Iter.length; _$rapyd$_Index++) {
@@ -503,10 +490,8 @@
                     return _$rapyd$_Result;
                 })();
                 merged_text = get_merged_text(source_texts, portions);
-                _$rapyd$_print("num words in source", len(merged_text));
                 num_words = load_num_words();
                 mix = get_mix(merged_text, num_words);
-                _$rapyd$_print("num words in mix", len(mix));
                 dump_mix(mix.join(" "));
             }, 1e3);
         });

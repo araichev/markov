@@ -194,14 +194,10 @@ def main():
         setTimeout(def():
             $("#mix" ).effect("shake", {'times':1}, 800)
             source_texts = load_source_texts()
-            for st in source_texts:
-                print(st)
             portions = [1 for i in len(source_texts)]
             merged_text = get_merged_text(source_texts, portions)
-            print('num words in source', len(merged_text))
             num_words = load_num_words()
             mix = get_mix(merged_text, num_words)
-            print('num words in mix', len(mix))
             dump_mix(mix.join(' '))
         ,1000)
     )        

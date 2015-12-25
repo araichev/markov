@@ -1,7 +1,6 @@
 Markov, A Game of Poems
 ========================
-A website dedicated to Markov poems (definition included on website).
-
+Source code for `araichev.github.io/markov <http:araichev.github.io/markov>`_, a website dedicated to Markov poems.
 
 Requirements
 ------------

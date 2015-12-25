@@ -101,4 +101,4 @@ def page_content():
     script(src='lib/porter_stemmer.min.js')
     script(src='js/game.js')
 
-page('index')
+page('index-page')

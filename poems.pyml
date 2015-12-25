@@ -28,4 +28,4 @@ def page_content():
     # Script that inserts the poems
     script(src="js/poems.js")
 
-page('poems')
+page('poems-page')

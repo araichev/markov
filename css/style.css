@@ -69,20 +69,23 @@ ol {
   list-style-position: inside;
   li-padding: 0; }
 
-  p {
-    margin: 0 0 1em 0; }
+  ul {
+    list-style-type: circle; }
 
-    hr {
-      margin: 1em 0em;
-      border-bottom: 1px solid #ebebeb;
-      border-style: none none solid none; }
+    p {
+      margin: 0 0 1em 0; }
 
-      table {
-        border-collapse: collapse;
-        width: 750px;
-        font: inherit; }
-        table td {
-          padding: 0 15px 0 0; }
+      hr {
+        margin: 1em 0em;
+        border-bottom: 1px solid #ebebeb;
+        border-style: none none solid none; }
+
+        table {
+          border-collapse: collapse;
+          width: 750px;
+          font: inherit; }
+          table td {
+            padding: 0 15px 0 0; }
 
 textarea {
   background-color: #ebebeb;

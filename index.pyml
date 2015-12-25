@@ -99,6 +99,6 @@ def page_content():
         
     
     script(src='lib/porter_stemmer.min.js')
-    script(src='js/markov.js')
+    script(src='js/game.js')
 
 page('index')

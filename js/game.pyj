@@ -1,4 +1,5 @@
-import stdlib
+from stdlib import dict 
+
 
 PREFIX_LENGTH = 2
 STOP_WORDS = None

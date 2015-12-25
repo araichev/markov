@@ -1,5 +1,6 @@
 import stdlib
 
+
 def printPoem(data):
     html = '<h2 class="decorate">' + data['title'] + '</h2>'
     html += '<pre class="poem">' + data['poem'] + '</pre>'

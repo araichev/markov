@@ -13,7 +13,8 @@ def page_content():
         "To play it safe, please use source texts that you have permission to remix, such as those in the public domain."
 
     # Poems will go into this section
-    section(id="poems")
+    section(id="poems"):
+        " "
 
     # Poem files to include
     data:

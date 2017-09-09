@@ -12,7 +12,7 @@ def page_content():
     div(class="A"):
         "A Markov poem, as i call it, is a poem created by playing the game below, one step of which involves generating text via a"
         abbr(data-toggle="popover", data-trigger="focus", tabindex="0", data-content="A random process that changes states according to a transition rule that only depends on the current state."):
-            "Markov process."  
+            "Markov process."
     div(class="Q"):
         "Interesting.  How do i play?"
     div(class="A"):
@@ -23,8 +23,8 @@ def page_content():
     ol:
         li:
             # h4:
-            #     "Pick" 
-            "Pick one to three source texts and paste them into the boxes below." 
+            #     "Pick"
+            "Pick one to three source texts and paste them into the boxes below."
             table:
                 tr:
                     td:
@@ -40,8 +40,8 @@ def page_content():
             # h4:
             #     "Mix"
             abbr(data-toggle="popover", data-trigger="focus", tabindex="0", data-content="This step uses the following Markov process. Take equal parts of the source texts, concatenate the parts into one text T, choose an initial block of two words from T, choose another word randomly from all possible words in T that follow the previous two words chosen, choose another word randomly from all possible words in T that follow the previous two words chosen, and so on until the desired number of words are produced."):
-                "Mix" 
-            "the source texts to produce a new text with the selected number of words." 
+                "Mix"
+            "the source texts to produce a new text with the selected number of words."
             center:
                 span(id="num-words-widget", class="btn-group", data-toggle="buttons"):
                     label(class="btn btn-default active")
@@ -60,14 +60,11 @@ def page_content():
         li:
             # h4:
             #     "Write"
-            "Write a poem satisfying Rule M: each word of the poem is (a) a word with the same "
-            abbr(data-toggle="popover", data-trigger="focus", tabindex="0", data-content="The root form of a word, which is often used in natural language processing algorithms. For example, 'argue', 'argued', 'argues', 'arguing', and 'argus' all have stem 'argu'."):    
-                "stem" 
-            "as a word in the mix or (b) a"
+            "Write a poem satisfying Rule M: Every word of your poem must come from the mix, except you may use"
             abbr(id="stop-words", data-toggle="popover", data-trigger="focus", tabindex="0"):
-                "stop word"
-            ". As an example of part (a), you can use 'required' if 'requiring' is in the mix." 
-    
+                "stop words"
+            "or change the endings of mix words. As an example of the latter exception, if the word 'running' is in the mix, then you may use 'run' or 'ran' in your poem."
+
             textarea(maxlength="1000000" id="poem")
         li:
             # h4:
@@ -89,15 +86,15 @@ def page_content():
     div(class="Q"):
         "Where did this game come from?"
     div(class="A"):
-        "It was inspired by a computer programming exercise i did a few years ago," 
+        "It was inspired by a computer programming exercise i did a few years ago,"
         a(href="http://www.greenteapress.com/thinkpython/html/thinkpython014.html#toc149"):
-            "Think Python Exercise 13.8." 
+            "Think Python Exercise 13.8."
         "Based on that exercise, i tried to make my computer write poetry. After several attempts and feeble results, i realized that it would be much more satisfying all around to make instead a game for humans to write poetry. Thus was born Markov, A Game of Poems. Incidentally, i later learned through reading"
         a(href="misc/markov_chain.pdf"):
             "this American Scientist article"
         "that Andrey Markov invented his eponymous process through analyzing poetry, of all things."
-        
-    
+
+
     script(src='lib/porter_stemmer.min.js')
     script(src='js/game.js')
 

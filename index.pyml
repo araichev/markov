@@ -60,7 +60,7 @@ def page_content():
         li:
             # h4:
             #     "Write"
-            "Write a poem satisfying Rule M: Every word of your poem must come from the mix, except you may use"
+            "Write a poem satisfying Rule M: Every word of your poem must come from the mix, except that you may use"
             abbr(id="stop-words", data-toggle="popover", data-trigger="focus", tabindex="0"):
                 "stop words"
             "or change the endings of mix words. As an example of the latter exception, if the word 'running' is in the mix, then you may use 'run' or 'ran' in your poem."

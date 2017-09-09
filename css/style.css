@@ -37,13 +37,13 @@ nav ul {
     margin-left: 0; }
 
 a {
-  color: royalblue;
+  color: #e69500;
   text-decoration: none; }
   a:hover, a:active {
     text-decoration: underline;
-    color: royalblue; }
+    color: #e69500; }
     a:visited {
-      color: royalblue; }
+      color: #e69500; }
 
 body#index-page a#nav-index, body#poems-page a#nav-poems {
   color: inherit; }
